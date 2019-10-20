@@ -15,7 +15,6 @@ La aplicación web Geek Repairer tiene como objetivo realizar la gestión efecti
 * MVC - Patrón de Diseño De Software
 * Springs Tools Suite 4 - IDE 
 * Postgre SQL 11.5 - Sistema de Gestión de Base de Datos
-* Wildfly 17 - Servidor de Aplicaciones Java EE
 * Java - Lenguaje de programación 
 * Java EE - Plataforma de programación 
 * Github - Controlador de versiones
