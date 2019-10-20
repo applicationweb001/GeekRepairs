@@ -21,11 +21,11 @@ La aplicación web Geek Repairer tiene como objetivo realizar la gestión efecti
 * Github - Controlador de versiones
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
 * Dependencias utilizadas:
-  *PostgreSQL Driver
-  *Spring web
-  *Spring Boot DevTools
-  *Spring Data JPA
-  *Thymeleaf
+  * PostgreSQL Driver
+  * Spring web
+  * Spring Boot DevTools
+  * Spring Data JPA
+  * Thymeleaf
 
 ## Autores ✒️
 * **Christian Ramos** (Naitsirch)
