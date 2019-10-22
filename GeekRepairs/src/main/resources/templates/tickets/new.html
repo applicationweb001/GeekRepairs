@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Registrar Ticket de Servicio</div>
+			<div class="card-body">
+
+				<form th:object="${ticket}" th:action="@{/tickets/save}"
+					th:method="post">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+
+					<div class="form-group">
+						<label for="fecha">Fecha de Atención</label> <input type="text"
+							class="form-control" id="fecha" readonly="readonly" />
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 text-rigth">
+							<select id="select1">
+								<option value="Remoto">Remoto</option>
+								<option value="Presencial">Presencial</option>
+							</select>
+						</div>
+					</div>
+
+					<br></br> <a th:href="@{/tickets/}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Save</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear() + "/" + (month) + "/" + (day);
+		$("#fecha").val(today);
+	});
+</script>
+</html>
