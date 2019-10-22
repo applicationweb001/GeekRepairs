@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Trouble keeping</div>
+			<div class="card-body">
+
+				<a th:href="@{/problems/new}" class="btn btn-primary">New</a>
+
+		<div class="form-group">
+						<label for="problem">Problem</label> <select id="problem"
+							class="form-control" th:field="*{problems}" multiple="multiple">
+							<option th:each="problem : ${problems}"
+								th:text="${problem.name}" th:value="${problem.id}"></option>
+				
+						</select>	
+						
+		</div>
+
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th>Name</th>
+                            <th>Description</th>
+                           
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="problem : ${problems}">
+
+							<td th:text="${problem.id}">1</td>
+							<td th:text="${problem.name}">Latencia</td>
+							<td th:text="${problem.description}">Interrupcion continua</td>
+						
+							<td><a th:href="@{'/problems/edit/'+ ${problem.id}}"
+								class="btn btn-success">Edit</a></td>
+							<td><a th:href="@{'/problems/delete/' + ${problem.id}}"
+								class="btn btn-danger">Delete</a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

@@ -1,38 +1,34 @@
-package com.hampcode.model.entity;
+package com.geek.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+
 
 @Entity
-@Table(name="Clients")
-public class Client {
-	
+@Table(name="tecsremote")
+public class TecRemote {
+
 	@Id
-	@Column(name="client_id")
+	@Column(name ="tec_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 	
-	@NotEmpty(message="Ingrese el nombre")
+	
 	private String name;
 	
+
 	private String surname;
+	
+	
 	
 	private String email;
 	
-	private int phone;
 	
-	private String address;
-	
-	private String type;
-	
-	@OneToMany
-	//private List<Tickets> tickets;
+	private Long mobile;
 
 	public Long getId() {
 		return id;
@@ -58,6 +54,7 @@ public class Client {
 		this.surname = surname;
 	}
 
+	
 	public String getEmail() {
 		return email;
 	}
@@ -66,28 +63,13 @@ public class Client {
 		this.email = email;
 	}
 
-	public int getPhone() {
-		return phone;
+	public Long getMobile() {
+		return mobile;
 	}
 
-	public void setPhone(int phone) {
-		this.phone = phone;
+	public void setMobile(Long mobile) {
+		this.mobile = mobile;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
+	
 }
