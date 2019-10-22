@@ -7,26 +7,11 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Actualizar Categoria</div>
+			<div class="card-header">Actualizar Tecnico Independiente</div>
 			<div class="card-body">
 
-<<<<<<< HEAD
-				<form th:object="${category}"  th:action="@{/categories/update/{id}(id=${category.id})}" 
-					th:method="post">
-					<div class="form-group">
-						<input type="hidden" class="form-control" th:field="*{id}" />
-					</div>
-					
-					<div class="form-group">
-						<label for="name">Name</label> <input type="text"
-							class="form-control" id="name" aria-describedby="name"
-							th:field="*{name}" placeholder="type here ..." />
-					</div>
-					
-					
-=======
-				<form th:object="${category}"
-					th:action="@{/categories/update/{id}(id=${category.id})}"
+				<form th:object="${technicianInd}"
+					th:action="@{/techniciansInd/update/{id}(id=${technicianInd.id})}"
 					th:method="post">
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
@@ -37,10 +22,24 @@
 							class="form-control" id="name" aria-describedby="name"
 							th:field="*{name}" placeholder="type here ..." />
 					</div>
+					<div class="form-group">
+						<label for="telephone">Telefono</label> <input type="text"
+							class="form-control" id="telephone" aria-describedby="telephone"
+							th:field="*{telephone}" placeholder="type here ..." />
+					</div>
+					<div class="form-group">
+						<label for="cost">Costo</label> <input type="text"
+							class="form-control" id="cost" aria-describedby="cost"
+							th:field="*{cost}" placeholder="type here ..." />
+					</div>
+					<div class="form-group">
+						<label for="status">Estado</label> <input type="text"
+							class="form-control" id="status" aria-describedby="status"
+							th:field="*{status}" placeholder="type here ..." />
+					</div>
 
 
->>>>>>> branch 'Dev' of https://github.com/applicationweb001/GeekRepairs.git
-					<a th:href="@{/categories/}" class="btn btn-primary">Regresar</a>
+					<a th:href="@{/techniciansInd/}" class="btn btn-primary">Regresar</a>
 					<button type="submit" class="btn btn-success">Save</button>
 				</form>
 			</div>
