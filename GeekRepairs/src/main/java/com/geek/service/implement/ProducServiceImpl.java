@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.geek.model.entity.Product;
+
 import com.geek.model.repository.ProductRepository;
 import com.geek.service.ProductService;
 
@@ -14,6 +15,7 @@ public class ProducServiceImpl implements ProductService{
 
 	@Autowired
 	private ProductRepository productRepository;
+	
 	
 	@Override
 	public List<Product> getAll() {
@@ -34,13 +36,16 @@ public class ProducServiceImpl implements ProductService{
 	@Override
 	public void update(Long id, Product entity) {
 		// TODO Auto-generated method stub
-		
+		Product currentProduct = getOneById(id);
+		currentProduct.setName(entity.getName());
+		currentProduct.setUnitPrice(entity.getUnitPrice());
+		currentProduct.setCategory(entity.getCategory());
+		productRepository.save(currentProduct);
 	}
 
 	@Override
 	public void delete(Long id) {
 		productRepository.deleteById(id);
-		
 	}
 
 }
