@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hampcode.model.entity.Specialty;
-import com.hampcode.service.SpecialtyService;
+import com.geek.model.entity.Specialty;
+import com.geek.service.SpecialtyService;
 
 
 @Controller

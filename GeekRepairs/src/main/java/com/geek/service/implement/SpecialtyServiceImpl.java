@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.hampcode.model.entity.Specialty;
-import com.hampcode.model.repository.SpecialtyRepository;
-import com.hampcode.service.SpecialtyService;
+import com.geek.model.entity.Specialty;
+import com.geek.model.repository.SpecialtyRepository;
+import com.geek.service.SpecialtyService;
 
 
 @Service
