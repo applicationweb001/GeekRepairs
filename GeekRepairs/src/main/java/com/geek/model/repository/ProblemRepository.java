@@ -8,4 +8,5 @@ import com.geek.model.entity.Problem;
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem,Long> {
 
+	
 }

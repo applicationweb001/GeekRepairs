@@ -76,12 +76,10 @@ public class ProblemController {
 	@GetMapping("/search/{id}")
     public String searchProblem(@PathVariable("id") long id, Model model) {
            
-		 Problem prob = problemService.getOneById(id);
+		Problem prob = problemService.getOneById(id);
     	model.addAttribute("problem",prob);
         
         return "problems/search";
     }
-	
 
-	
 }
