@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Remote technician maintenance</div>
+			<div class="card-body">
+
+				<a th:href="@{/tecsremote/new}" class="btn btn-primary">Nuevo</a>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+							<th>Phone</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tecremote : ${tecsremote}">
+
+							<td th:text="${tecremote.id}">1</td>
+							<td th:text="${tecremote.name}">Roberto</td>
+							<td th:text="${tecremote.surname}">Gomez</td>
+							<td th:text="${tecremote.email}">gomezrobert@gmail.com</td>
+							<td th:text="${tecremote.mobile}">929548923</td>
+						
+							<td><a th:href="@{'/tecsremote/edit/'+ ${tecremote.id}}"
+								class="btn btn-success">Edit</a></td>
+							<td><a th:href="@{'/tecsremote/delete/' + ${tecremote.id}}"
+								class="btn btn-danger">Delete</a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Mantenimiento Tecnicos Independientes</div>
+			<div class="card-body">
+				
+				<a th:href="@{/techniciansInd/new}" class="btn btn-primary">Nuevo</a>
+				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th>Nombre</th>
+							<th>Costo</th>
+							<th>Ver</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="technicianInd : ${techniciansInd}">
+							
+							<td th:text="${technicianInd.id}">1</td>
+							<td th:text="${technicianInd.name}">HAMP</td>
+							<td th:text="${technicianInd.cost}">HAMP</td>
+							<td><a th:href="@{'/techniciansInd/show/' + ${technicianInd.id}}" class="btn btn-primary">Ver</a></td>
+							<td>
+							  <a th:href="@{'/techniciansInd/edit/'+ ${technicianInd.id}}" class="btn btn-success">Editar</a>
+							</td>
+							<td><a th:href="@{'/techniciansInd/delete/' + ${technicianInd.id}}" class="btn btn-danger">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>
