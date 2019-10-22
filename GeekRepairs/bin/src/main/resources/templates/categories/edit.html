@@ -10,20 +10,19 @@
 			<div class="card-header">Actualizar Categoria</div>
 			<div class="card-body">
 
-				<form th:object="${category}"
-					th:action="@{/categories/update/{id}(id=${category.id})}"
+				<form th:object="${category}"  th:action="@{/categories/update/{id}(id=${category.id})}" 
 					th:method="post">
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
-
+					
 					<div class="form-group">
 						<label for="name">Name</label> <input type="text"
 							class="form-control" id="name" aria-describedby="name"
 							th:field="*{name}" placeholder="type here ..." />
 					</div>
-
-
+					
+					
 					<a th:href="@{/categories/}" class="btn btn-primary">Regresar</a>
 					<button type="submit" class="btn btn-success">Save</button>
 				</form>
