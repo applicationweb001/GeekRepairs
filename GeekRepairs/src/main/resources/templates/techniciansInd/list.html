@@ -18,6 +18,7 @@
 							<th scope="col">#</th>
 							<th>Nombre</th>
 							<th>Costo</th>
+							<th>Estado</th>
 							<th>Ver</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -29,6 +30,12 @@
 							<td th:text="${technicianInd.id}">1</td>
 							<td th:text="${technicianInd.name}">HAMP</td>
 							<td th:text="${technicianInd.cost}">HAMP</td>
+							<td th:text="${technicianInd.status}">HAMP</td>
+							<td><th:block th:each="specialty : ${technicianInd.specialties}">
+									<span th:text="${specialty.name} + ' '">Item description
+										here...</span>
+								</th:block>
+							</td>
 							<td><a th:href="@{'/techniciansInd/show/' + ${technicianInd.id}}" class="btn btn-primary">Ver</a></td>
 							<td>
 							  <a th:href="@{'/techniciansInd/edit/'+ ${technicianInd.id}}" class="btn btn-success">Editar</a>
