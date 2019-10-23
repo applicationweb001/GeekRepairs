@@ -37,10 +37,10 @@ public class TechnicianInd {
 	@NotEmpty
 	private String status;
 
-	//@ManyToMany(fetch = FetchType.LAZY)
-	//@JoinTable(name = "technicianInd_specialty", joinColumns = { @JoinColumn(name = "specialty_id") })
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "technicianInd_specialty", joinColumns = { @JoinColumn(name = "specialty_id") })
 	
-	//private List<Specialty>specialties=new ArrayList<>();
+	private List<Specialty>specialties=new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -81,7 +81,7 @@ public class TechnicianInd {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-/*
+
 	public List<Specialty> getSpecialties() {
 		return specialties;
 	}
@@ -89,6 +89,6 @@ public class TechnicianInd {
 	public void setSpecialties(List<Specialty> specialties) {
 		this.specialties = specialties;
 	}
-*/	
+
 
 }

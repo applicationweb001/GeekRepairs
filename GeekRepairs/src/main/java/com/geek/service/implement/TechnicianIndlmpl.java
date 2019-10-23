@@ -41,6 +41,7 @@ public class TechnicianIndlmpl implements TechnicianIndService{
 		currentTechnician.setCost(entity.getCost());
 		currentTechnician.setTelephone(entity.getTelephone());
 		currentTechnician.setStatus(entity.getStatus());
+		currentTechnician.setSpecialties(entity.getSpecialties());;
 		technicianIndRepository.save(currentTechnician);
 	}
 

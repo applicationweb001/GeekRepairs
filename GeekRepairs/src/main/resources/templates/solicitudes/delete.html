@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Eliminar</div>
+			<div class="card-body">
+
+				<form th:object="${solicitude}"  th:action="@{/solicitudes/drop/{id}(id=${solicitude.id})}" 
+					th:method="post">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+					
+					<p>Do you want to delete the next item?</p>
+					
+					<div class="form-group">
+						<label for="status">Estado</label> <input type="text"
+							class="form-control" id="status" aria-describedby="status"
+							th:field="*{status}" placeholder="type here ..." />
+					</div>
+               
+					
+					
+					<a th:href="@{/solicitudes/}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Eliminar</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

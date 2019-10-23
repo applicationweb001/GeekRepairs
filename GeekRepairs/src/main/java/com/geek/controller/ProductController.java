@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.geek.model.entity.Category;
 import com.geek.model.entity.Product;
+import com.geek.model.entity.TechnicianInd;
 import com.geek.service.CategoryService;
 import com.geek.service.ProductService;
 
@@ -63,6 +64,22 @@ public class ProductController {
 	@PostMapping("/update/{id}")
     public String updateProduct(@PathVariable("id") long id, Product product) {
         productService.update(id, product);
+        return "redirect:/products";    
+    }
+
+	@GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") long id, Model model) {
+		Product pro = productService.getOneById(id);
+        
+        model.addAttribute("product", pro);
+        
+        return "products/delete";
+    }
+	
+	@PostMapping("/drop/{id}")
+    public String dropPro(@PathVariable("id") long id) {
+		productService.delete(id);
+        
         return "redirect:/products";    
     }
 	

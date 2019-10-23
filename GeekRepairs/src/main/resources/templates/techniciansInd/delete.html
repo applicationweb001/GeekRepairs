@@ -7,20 +7,23 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Registrar Tecnico independiente</div>
+			<div class="card-header">Delete Result</div>
 			<div class="card-body">
 
-				<form th:object="${technicianInd}"
-					th:action="@{/techniciansInd/save}" th:method="post">
+				<form th:object="${technicianInd}"  th:action="@{/techniciansInd/drop/{id}(id=${technicianInd.id})}" 
+					th:method="post">
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
-
+					
+					<p>Do you want to delete the next item?</p>
+					
 					<div class="form-group">
-						<label for="name">Nombre</label> <input type="text"
+						<label for="name">Name</label> <input type="text"
 							class="form-control" id="name" aria-describedby="name"
 							th:field="*{name}" placeholder="type here ..." />
 					</div>
+
 					<div class="form-group">
 						<label for="telephone">Telefono</label> <input type="text"
 							class="form-control" id="telephone" aria-describedby="telephone"
@@ -46,8 +49,13 @@
 						</select>
 					</div>
 					<br>
-					<br> <a th:href="@{/techniciansInd/}" class="btn btn-primary">Regresar</a>
-					<button type="submit" class="btn btn-success">Save</button>
+					<br>
+					
+                
+					
+					
+					<a th:href="@{/problems/}" class="btn btn-primary">Return</a>
+					<button type="submit" class="btn btn-success">Drop</button>
 				</form>
 			</div>
 		</div>
