@@ -7,7 +7,7 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Trouble log</div>
+			<div class="card-header">Registrar Tecnico Remoto</div>
 			<div class="card-body">
 
 				<form th:object="${problem}" th:action="@{/problems/save}"
@@ -17,21 +17,21 @@
 					</div>
 
 					<div class="form-group">
-						<label for="name">Name</label> <input type="text"
+						<label for="name">Nombre</label> <input type="text"
 							class="form-control" id="name" aria-describedby="name"
 							th:field="*{name}" placeholder="type here ..." />
 					</div>
 
 					<div class="form-group">
-						<label for="description">Description</label> <input type="text"
+						<label for="description">Descripcion</label> <input type="text"
 							class="form-control" id="description" aria-describedby="description"
 							th:field="*{description}" placeholder="type here ..." />
                     </div>
                     
 					
 
-					<a th:href="@{/problems/}" class="btn btn-primary">Return</a>
-					<button type="submit" class="btn btn-success">Save</button>
+					<a th:href="@{/problems/}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Guardar</button>
 				</form>
 			</div>
 		</div>

@@ -7,28 +7,31 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Trouble keeping</div>
+			<div class="card-header">Mantenimiento de tecnicos remotos</div>
 			<div class="card-body">
 
-				<a th:href="@{/problems/new}" class="btn btn-primary">New</a>
+				<a th:href="@{/problems/new}" class="btn btn-primary">Nuevo</a>
 
-		<div class="form-group">
-						<label for="problem">Problem</label> <select id="problem"
+	
+
+				
+					
+						<div class="form-group">
+						<label for="problem">Problemas</label> <select id="problem"
 							class="form-control" th:field="*{problems}" multiple="multiple">
 							<option th:each="problem : ${problems}"
 								th:text="${problem.name}" th:value="${problem.id}"></option>
-				
 						</select>	
+						</div>
 						
-		</div>
-
-			
+						
+					
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th>Name</th>
-                            <th>Description</th>
+							<th>Nombre</th>
+                            <th>Descripcion</th>
                            
 						</tr>
 					</thead>
@@ -40,9 +43,9 @@
 							<td th:text="${problem.description}">Interrupcion continua</td>
 						
 							<td><a th:href="@{'/problems/edit/'+ ${problem.id}}"
-								class="btn btn-success">Edit</a></td>
+								class="btn btn-success">Editar</a></td>
 							<td><a th:href="@{'/problems/delete/' + ${problem.id}}"
-								class="btn btn-danger">Delete</a></td>
+								class="btn btn-danger">Eliminar</a></td>
 							
 						</tr>
 					</tbody>

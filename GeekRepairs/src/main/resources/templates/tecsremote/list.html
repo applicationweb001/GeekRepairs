@@ -7,7 +7,7 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Remote technician maintenance</div>
+			<div class="card-header">Mantenimiento de Tecnico Remoto</div>
 			<div class="card-body">
 
 				<a th:href="@{/tecsremote/new}" class="btn btn-primary">Nuevo</a>
@@ -16,10 +16,10 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th>Name</th>
-                            <th>Surname</th>
+							<th>Nombre</th>
+                            <th>Apellido</th>
                             <th>Email</th>
-							<th>Phone</th>
+							<th>Telefono</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,9 +32,9 @@
 							<td th:text="${tecremote.mobile}">929548923</td>
 						
 							<td><a th:href="@{'/tecsremote/edit/'+ ${tecremote.id}}"
-								class="btn btn-success">Edit</a></td>
+								class="btn btn-success">Editar</a></td>
 							<td><a th:href="@{'/tecsremote/delete/' + ${tecremote.id}}"
-								class="btn btn-danger">Delete</a></td>
+								class="btn btn-danger">Eliminar</a></td>
 							
 						</tr>
 					</tbody>
