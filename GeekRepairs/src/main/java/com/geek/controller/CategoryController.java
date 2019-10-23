@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.geek.model.entity.Category;
+import com.geek.model.entity.TecRemote;
 import com.geek.service.CategoryService;
 
 @Controller
@@ -45,15 +46,23 @@ public class CategoryController {
 	}
 
 	@PostMapping("/update/{id}")
-    public String updateCategory(@PathVariable("id") long id, Category category) {
-        categoryService.update(id, category);
-        return "redirect:/categories";
+	public String updateCategory(@PathVariable("id") long id, Category category) {
+		categoryService.update(id, category);
+		return "redirect:/categories";
 	}
-	
-	@PostMapping("/delete/{id}")
+
+	@GetMapping("/delete/{id}")
 	public String deleteCategory(@PathVariable("id") long id, Model model) {
+		Category cat = categoryService.getOneById(id);
+
+		model.addAttribute("category", cat);
+
+		return "categories/delete";
+	}
+
+	@PostMapping("/drop/{id}")
+	public String dropCategory(@PathVariable("id") long id) {
 		categoryService.delete(id);
 		return "redirect:/categories";
 	}
-	
 }
