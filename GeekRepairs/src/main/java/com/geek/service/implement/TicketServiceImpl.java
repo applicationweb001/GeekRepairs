@@ -27,6 +27,8 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Long create(Ticket entity) {
+		
+		entity.setStatus("Pendiente");
 		ticketRepository.save(entity);
 		return entity.getId();
 	}
@@ -35,9 +37,9 @@ public class TicketServiceImpl implements TicketService {
 	public void update(Long id, Ticket entity) {
 		Ticket currentTicket = getOneById(id);
 		currentTicket.setAddress(entity.getAddress());
-		//currentTicket.setClient(entity.getClient());
 		currentTicket.setDateAttention(entity.getDateAttention());
 		currentTicket.setDateService(entity.getDateService());
+		currentTicket.setClient(entity.getClient());
 		currentTicket.setStartTime(entity.getStartTime());
 		currentTicket.setStatus(entity.getStatus());
 		currentTicket.setTypeService(entity.getTypeService());

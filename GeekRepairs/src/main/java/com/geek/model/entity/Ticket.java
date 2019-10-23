@@ -1,5 +1,7 @@
 package com.geek.model.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="tickets")
@@ -18,9 +22,9 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//@ManyToOne
-	//@JoinColumn(name="client_id")
-	//private Client client;
+	@ManyToOne
+	@JoinColumn(name="client_id")
+	private Client client;
 	
 	@Column(name = "dateAttention", nullable = false)
 	private String dateAttention;
@@ -69,6 +73,14 @@ public class Ticket {
 		this.typeService = typeService;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
 	public String getStatus() {
 		return status;
 	}

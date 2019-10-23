@@ -7,16 +7,17 @@
 	<div class="container">
 
 		<div class="card" style="max-width: 100%;">
-			<div class="card-header">Actualizar Ticket de Servicio</div>
+			<div class="card-header">Eliminar Ticket de Servicio</div>
 			<div class="card-body">
 
-				<form th:object="${ticket}" th:action="@{/tickets/save}"
+				<form th:object="${ticket}" th:action="@{/tickets/drop/{id}(id=${ticket.id})}"
 					th:method="post">
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}" />
 					</div>
-
-
+					
+					<p>Desea eliminar este Ticket?</p>
+					
 					<div class="form-group">
 						<label for="fecha">Fecha de Atencion</label> <input type="text"
 							class="form-control" th:field="*{dateAttention}" id="fecha"
@@ -58,7 +59,7 @@
 					</div>
 
 					<a th:href="@{/tickets/}" class="btn btn-primary">Regresar</a>
-					<button type="submit" class="btn btn-success">Save</button>
+					<button type="submit" class="btn btn-danger">Eliminar</button>
 				</form>
 			</div>
 		</div>

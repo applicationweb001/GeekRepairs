@@ -19,6 +19,7 @@
 							<th>Estado</th>
 							<th>Tipo Servicio</th>
 							<th>Fecha Atencion</th>
+							<th>Cliente</th>
 							<th>Ver</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -31,6 +32,7 @@
 							<td th:text="${ticket.status}"></td>
 							<td th:text="${ticket.typeService}"></td>
 							<td th:text="${ticket.dateAttention}"></td>
+							<td th:text="${ticket.client.name}"></td>	
 							<td><a th:href="@{'/tickets/show/' + ${ticket.id}}"
 																				class="btn btn-primary">Ver</a></td>
 							<td><a th:href="@{'/tickets/edit/'+ ${ticket.id}}"
