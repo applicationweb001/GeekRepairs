@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.geek.model.entity.Problem;
 import com.geek.model.entity.Specialty;
 import com.geek.model.entity.TechnicianInd;
 import com.geek.service.SpecialtyService;
@@ -65,5 +66,23 @@ public class TechnicianIndController {
         technicianIndService.update(id, technicianInd);
         return "redirect:/techniciansInd";    
     }
+	
+	@GetMapping("/delete/{id}")
+    public String deleteProblem(@PathVariable("id") long id, Model model) {
+        TechnicianInd tech = technicianIndService.getOneById(id);
+        
+        model.addAttribute("technicianInd", tech);
+        
+        return "techniciansInd/delete";
+    }
+	
+	@PostMapping("/drop/{id}")
+    public String dropTech(@PathVariable("id") long id) {
+		technicianIndService.delete(id);
+        
+        return "redirect:/techniciansInd";    
+    }
+	
+	
 	
 }
