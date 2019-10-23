@@ -1,0 +1,115 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Registrar Ticket de Servicio</div>
+			<div class="card-body">
+
+				<form th:object="${ticket}" th:action="@{/tickets/save}"
+					th:method="post">
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+
+					<div class="form-group">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+
+					<div class="form-group">
+						<label for="fecha">Fecha de Atencion</label> <input type="text"
+							class="form-control" id="fecha" readonly="readonly" />
+					</div>
+
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#exampleModalCenter">Agregar Cliente</button>
+
+					<br></br>
+					<div class="form-group">
+						<label for="name">Nombre</label> <input type="text"
+							class="form-control" id="name" readonly="readonly" />
+					</div>
+
+					<div class="form-group">
+						<label for="name">Apellido</label> <input type="text"
+							class="form-control" id="name" readonly="readonly" />
+					</div>
+
+					<div class="form-group">
+						<label for="name">Tipo</label> <input type="text"
+							class="form-control" id="name" readonly="readonly" />
+					</div>
+
+
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">Agregar
+										Cliente</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<div class="modal-header">
+
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">Search</button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="name">Tipo</label> <input type="text"
+											class="form-control" id="name" readonly="readonly" />
+									</div>
+
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save
+										changes</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br></br> <a th:href="@{/tickets/}" class="btn btn-primary">Regresar</a>
+					<button type="submit" class="btn btn-success">Save</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear() + "/" + (month) + "/" + (day);
+		$("#fecha").val(today);
+	});
+</script>
+</html>
