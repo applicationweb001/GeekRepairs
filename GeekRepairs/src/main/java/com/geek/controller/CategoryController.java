@@ -35,6 +35,7 @@ public class CategoryController {
 	public String saveNewCategory(Category category) {
 		long id = categoryService.create(category);
 		return "redirect:/categories";
+		
 	}
 
 	@GetMapping("/edit/{id}")
