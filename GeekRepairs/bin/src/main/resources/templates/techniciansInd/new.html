@@ -31,13 +31,22 @@
 							class="form-control" id="cost" aria-describedby="cost"
 							th:field="*{cost}" placeholder="type here ..." />
 					</div>
-					<div class="form-group">
-						<label for="status">Estado</label> <input type="text"
-							class="form-control" id="status" aria-describedby="status"
-							th:field="*{status}" placeholder="type here ..." />
-					</div>
 
-					<a th:href="@{/techniciansInd/}" class="btn btn-primary">Regresar</a>
+					<label for="status">Estado:</label> <select name="status"
+						id="status" class="form-control" required>
+						<option value="Disponible">Disponible</option>
+						<option value="Ocupado" selected>Ocupado</option>
+					</select> <br>
+					<br>
+					<div class="form-group">
+						<label for="specialty">Especialidad</label> <select id="specialty"
+							class="form-control" th:field="*{specialties}" multiple="multiple">
+							<option th:each="specialty : ${specialties}"
+								th:text="${specialty.name}" th:value="${specialty.id}"></option>
+						</select>
+					</div>
+					<br>
+					<br> <a th:href="@{/techniciansInd/}" class="btn btn-primary">Regresar</a>
 					<button type="submit" class="btn btn-success">Save</button>
 				</form>
 			</div>
