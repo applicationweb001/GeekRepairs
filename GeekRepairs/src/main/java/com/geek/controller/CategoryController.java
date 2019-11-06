@@ -25,7 +25,7 @@ import com.geek.service.CategoryService;
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
-
+		
 	protected static final String CATEGORY_VIEW = "categories/showCategory"; // view template for single article
 	protected static final String CATEGORY_ADD_FORM_VIEW = "categories/newCategory"; // form for new article
 	protected static final String CATEGORY_EDIT_FORM_VIEW = "categories/editCategory"; // form for editing an article

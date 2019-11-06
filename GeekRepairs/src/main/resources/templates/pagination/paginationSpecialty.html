@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-sm-12">
+        <!--include if you want to select pagesize: 5,10 -->
+        <!--
+    <div>
+        <select id="pageSizeSelect">
+            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                    th:value="${pageSize}"
+                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+        </select>
+    </div>-->
+
+
+        <div th:if="${specialtiesList.totalPages != 1}" class="section">
+            <ul class="pagination pagination-primary">
+                <li class="page-item"
+                    th:class="${specialtiesList.number == 0} ? disabled"><a
+                    class="page-link"
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+                <li class="page-item"
+                    th:class="${specialtiesList.number == 0} ? disabled"><a
+                    class="page-link"
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number})}">year</a>
+                </li>
+                <li
+                    th:class="${specialtiesList.number == (page - 1)} ? 'active page-item'"
+                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                    <a class="page-link"
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${page})}"
+                    th:text="${page}"></a>
+                </li>
+                <li class="page-item"
+                    th:class="${specialtiesList.number + 1 == categoriesList.totalPages} ? disabled">
+                    <a class="page-link"
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number + 2})}">→</a>
+                </li>
+                <li class="page-item"
+                    th:class="${specialtiesList.number + 1 == specialtiesList.totalPages} ? disabled">
+                    <a class="page-link"
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.totalPages})}">»</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+    </div>
+</div>

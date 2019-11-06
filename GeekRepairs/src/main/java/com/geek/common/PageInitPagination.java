@@ -10,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.geek.model.Article;
 import com.geek.model.Category;
+import com.geek.model.Specialty;
 import com.geek.service.ArticleService;
 import com.geek.service.CategoryService;
+import com.geek.service.SpecialtyService;
 
 @Component
 public class PageInitPagination {
@@ -21,6 +23,9 @@ public class PageInitPagination {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private SpecialtyService specialtyService;
 	
 
 	// pagination
@@ -65,6 +70,29 @@ public class PageInitPagination {
 		PagerModel pager = new PagerModel(categoriesList.getTotalPages(), categoriesList.getNumber(), BUTTONS_TO_SHOW);
 
 		initModelView.addObject("categoriesList", categoriesList);
+		initModelView.addObject("selectedPageSize", evalPageSize);
+		initModelView.addObject("pageSizes", PAGE_SIZES);
+		initModelView.addObject("pager", pager);
+
+		return initModelView;
+	}
+	
+	public  ModelAndView initPaginationSpecialty(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+		ModelAndView initModelView = new ModelAndView(url);
+		// If pageSize == null, return initial page size
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		
+		/*
+		 * If page == null || page < 0 (to prevent exception), return initial size Else,
+		 * return value of param. decreased by 1
+		 */
+		
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Specialty> specialtiesList = specialtyService.findAll(PageRequest.of(evalPage, evalPageSize));
+		PagerModel pager = new PagerModel(specialtiesList.getTotalPages(), specialtiesList.getNumber(), BUTTONS_TO_SHOW);
+
+		initModelView.addObject("specialtiesList", specialtiesList);
 		initModelView.addObject("selectedPageSize", evalPageSize);
 		initModelView.addObject("pageSizes", PAGE_SIZES);
 		initModelView.addObject("pager", pager);

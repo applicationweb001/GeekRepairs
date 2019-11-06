@@ -40,6 +40,20 @@
 				</a>
 				</li>
 				
+				<li class="dropdown nav-item"><a th:href="@{/specialties/new}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="fas fa-plus"></i>New Specialty
+						 				</a>
+				</li>
+				
+				<li class="dropdown nav-item"><a th:href="@{/specialties}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="material-icons">apps</i> All Specialties
+				</a>
+				</li>
+				
 				
 				
 				
