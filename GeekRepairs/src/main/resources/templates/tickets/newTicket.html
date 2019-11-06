@@ -13,11 +13,11 @@
 				<div class="row">
 					<div class="col-md-8 offset-md-2 col-sm-12">
 						<div class="title">
-							<h2>New TechnicianInd</h2>
+							<h2>New Ticket</h2>
 						</div>
 
-						<form th:object="${ticket}"
-							th:action="@{/ticket/create}" th:method="post">
+						<form th:object="${ticket}" th:action="@{/ticket/create}"
+							th:method="post">
 
 							<div class="alert alert-danger" th:if="${error!=null}"
 								th:text="${error}"></div>
@@ -27,25 +27,42 @@
 							</div>
 
 							<div class="form-group">
-								<label for="client">Clientes</label> <select
-									id="client" class="form-control" th:field="*{clients}">
-									<option th:each="client : ${clients}"
-										th:text="${client.name}" th:value="${client.id}"></option>
+								<label for="fecha">Fecha de Atencion</label> <input type="text"
+									class="form-control" th:field="*{dateAttention}" id="fecha"
+									readonly="readonly" />
+							</div>
+
+							<div class="form-group">
+								<label for="client">Cliente</label> <select id="client"
+									class="form-control" th:field="*{client}">
+									<option th:each="client : ${clients}" th:text="${client.name}"
+										th:value="${client.id}"></option>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="address">Direccion</label> <input type="text"
+									class="form-control" id="address" aria-describedby="address"
+									th:field="*{address}" placeholder="type here ..." />
 							</div>
 							
 							
-							<br>
-							
+							<div class="form-group">
 
-							<br>
+							<label for="typeService">Tipo de Servicio:</label> <select
+								name="typeService" id="typeService" class="form-control"
+								required>
+								<option value="Remoto">Remoto</option>
+								<option value="Presencial" selected>Presencial</option>
+							</select> 
+							</div>
 
 							<button type="submit" class="btn btn-dark">Save</button>
 							<a class="btn btn-primary" th:href="@{'/tickets'}">Cancel</a>
 
 						</form>
-						
-						
+
+
 					</div>
 				</div>
 			</div>
