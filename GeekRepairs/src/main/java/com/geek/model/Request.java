@@ -1,12 +1,18 @@
 package com.geek.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,16 +29,28 @@ public class Request extends DateAudit{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message="Please enter a product.")
-	@Column(name="product")
-	private String product;
 	
-
 	@Column(name="quantity")
 	private int quantity;
 	
 	@Column(name ="total_price")
 	private double price;
+
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="Request_Product",joinColumns= {@JoinColumn(name="request_id")}) // aqui se agrego
+	@NotEmpty(message = "Por favor ingrese un Producto")
+	private List<Product> products = new ArrayList<>();
+
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
 
 	public double getPrice() {
 		return price;
@@ -47,8 +65,7 @@ public class Request extends DateAudit{
         this.setUpdatedAt(new Date());
     }
 
-    public Request(@NotEmpty String product,@NotEmpty int quantity,@NotEmpty double price) {
-        this.product = product;
+    public Request(@NotEmpty int quantity,@NotEmpty double price) {
         this.quantity = quantity;
         this.price = price;
        
@@ -65,13 +82,6 @@ public class Request extends DateAudit{
 		this.id = id;
 	}
 
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
-	}
 
 	public int getQuantity() {
 		return quantity;
