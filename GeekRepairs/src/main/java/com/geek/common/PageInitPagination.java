@@ -11,17 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.geek.model.Article;
 import com.geek.model.Category;
 import com.geek.model.Client;
+import com.geek.model.Problem;
 import com.geek.model.Product;
 import com.geek.model.Request;
 import com.geek.model.Specialty;
+import com.geek.model.TecRemote;
 import com.geek.model.TechnicianInd;
 import com.geek.model.Ticket;
 import com.geek.service.ArticleService;
 import com.geek.service.CategoryService;
 import com.geek.service.ClientService;
+import com.geek.service.ProblemService;
 import com.geek.service.ProductService;
 import com.geek.service.RequestService;
 import com.geek.service.SpecialtyService;
+import com.geek.service.TecRemoteService;
 import com.geek.service.TechnicianIndService;
 import com.geek.service.TicketService;
 
@@ -52,6 +56,12 @@ public class PageInitPagination {
 	@Autowired
 	private TicketService ticketService;
 	
+	
+	@Autowired
+	private TecRemoteService tecService;
+	
+	@Autowired
+	private ProblemService probService;
 
 	// pagination
 	private static final int BUTTONS_TO_SHOW = 3;
@@ -232,6 +242,47 @@ public class PageInitPagination {
 		PagerModel pager = new PagerModel(ticketsList.getTotalPages(), ticketsList.getNumber(), BUTTONS_TO_SHOW);
 
 		initModelView.addObject("ticketsList", ticketsList);
+		initModelView.addObject("selectedPageSize", evalPageSize);
+		initModelView.addObject("pageSizes", PAGE_SIZES);
+		initModelView.addObject("pager", pager);
+
+		return initModelView;
+	}
+	
+	
+	
+	public  ModelAndView initPaginationTecRemote(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+		ModelAndView initModelView = new ModelAndView(url);
+	
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		
+	
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<TecRemote> tecList = tecService.findAll(PageRequest.of(evalPage, evalPageSize));
+		PagerModel pager = new PagerModel(tecList.getTotalPages(), tecList.getNumber(), BUTTONS_TO_SHOW);
+
+		initModelView.addObject("tecList", tecList);
+		initModelView.addObject("selectedPageSize", evalPageSize);
+		initModelView.addObject("pageSizes", PAGE_SIZES);
+		initModelView.addObject("pager", pager);
+
+		return initModelView;
+	}
+	
+	
+	public  ModelAndView initPaginationProblem(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+		ModelAndView initModelView = new ModelAndView(url);
+	
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		
+	
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Problem> probList = probService.findAll(PageRequest.of(evalPage, evalPageSize));
+		PagerModel pager = new PagerModel(probList.getTotalPages(), probList.getNumber(), BUTTONS_TO_SHOW);
+
+		initModelView.addObject("probList", probList);
 		initModelView.addObject("selectedPageSize", evalPageSize);
 		initModelView.addObject("pageSizes", PAGE_SIZES);
 		initModelView.addObject("pager", pager);
