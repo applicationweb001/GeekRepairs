@@ -68,6 +68,20 @@
 				</a>
 				</li>
 				
+				<li class="dropdown nav-item"><a th:href="@{/requests/new}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="fas fa-plus"></i>New Request
+						 				</a>
+				</li>
+				
+				<li class="dropdown nav-item"><a th:href="@{/requests}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="material-icons">apps</i> All Requests
+				</a>
+				</li>
+				
 				
 				
 

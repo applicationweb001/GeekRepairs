@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+	<th:block th:include="fragments/navbarTransparent"></th:block>
+
+	<div class="main">
+		<th:block th:include="fragments/navbarPrimary"></th:block>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+						<div class="title">
+							<h2>New Request</h2>
+						</div>
+
+						<form th:object="${request}" th:action="@{/requests/create}"
+							th:method="post">
+							
+							<div class="alert alert-danger" th:if="${error!=null}"
+								th:text="${error}"></div>
+							
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+								<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+							</div>
+							
+								<div class="form-group">
+								<input th:field="*{product}" id="product" type="text"
+									class="form-control validate"> <label for="name">Producto</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('product')}" th:errors="*{product}"></span>
+							</div>
+							<div class="form-group">
+								<input th:field="*{quantity}" id="quantity" type="text"
+									class="form-control validate"> <label for="quantity">Cantidad</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+							</div>
+							<div class="form-group">
+								<input th:field="*{price}" id="price" type="text"
+									class="form-control validate"> <label for="price">Precio unitario</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+							</div>
+
+							<button type="submit" class="btn btn-dark">Save</button>
+							<a class="btn btn-primary" th:href="@{'/requests'}">Cancel</a>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/footer"></th:block>
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>
