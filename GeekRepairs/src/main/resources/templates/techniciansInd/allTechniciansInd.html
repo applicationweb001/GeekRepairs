@@ -30,6 +30,12 @@
 								<tr th:each="technicianInd: ${techniciansIndList}">
 									<td th:text="${technicianInd.name}"></td>
 									
+									<td><th:block th:each="specialty : ${technicianInd.specialties}">
+									<span th:text="${specialty.name} + ' /'">Item description
+										here...</span>
+										
+								</th:block>
+									
 									<td
 									th:text="${#dates.format(technicianInd.updatedAt, 'dd-MMM-yyyy')}"></td>
 									

@@ -1,12 +1,16 @@
 package com.geek.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.*;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -16,8 +20,13 @@ import com.geek.dateAudit.DateAudit;
 @Table(name = "techniciansInd")
 public class TechnicianInd extends DateAudit {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "technicianInd_id")
 	private long id;
 
@@ -36,6 +45,11 @@ public class TechnicianInd extends DateAudit {
 	@NotEmpty(message = "Por favor ingrese un estado")
 	@Column(name = "status")
 	private String status;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="technicianInd_specialty",joinColumns= {@JoinColumn(name="technicianInd_id")})
+	@NotEmpty(message = "Por favor ingrese al menos una especialidad para el tecnico")
+	private List<Specialty> specialties = new ArrayList<>();
 
 	public TechnicianInd() {
 		this.setCreatedAt(new Date());
@@ -92,6 +106,16 @@ public class TechnicianInd extends DateAudit {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public List<Specialty> getSpecialties() {
+		return specialties;
+	}
+
+	public void setSpecialties(List<Specialty> specialties) {
+		this.specialties = specialties;
+	}
+	
+	
 
 	
 }

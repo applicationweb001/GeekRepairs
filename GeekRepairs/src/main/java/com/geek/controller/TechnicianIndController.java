@@ -1,5 +1,6 @@
 package com.geek.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -20,7 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
 import com.geek.model.Category;
+import com.geek.model.Specialty;
 import com.geek.model.TechnicianInd;
+import com.geek.service.SpecialtyService;
 import com.geek.service.TechnicianIndService;
 
 @Controller
@@ -39,6 +42,10 @@ public class TechnicianIndController {
 	@Autowired
 	private TechnicianIndService technicianIndService;
 	
+	@Autowired
+	private SpecialtyService specialtyService ;
+	
+	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public String getTechnicianIndById(@PathVariable(value = "id") Long technicianIndId, Model model) {
@@ -52,6 +59,8 @@ public class TechnicianIndController {
 	public ModelAndView getAllTechniciansInd(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
 		ModelAndView modelAndView = pageInitiPagination.initPaginationTechnicianInd(pageSize, page, TECHNICIANIND_PAGE_VIEW);
+		
+		
 		return modelAndView;
 
 	}
@@ -63,6 +72,8 @@ public class TechnicianIndController {
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("technicianInd")) {
 			model.addAttribute("technicianInd", new TechnicianInd());
+			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
+			model.addAttribute("specialties",specialties); // y esto
 		}
 		return TECHNICIANIND_ADD_FORM_VIEW;
 	}
@@ -75,8 +86,10 @@ public class TechnicianIndController {
 		if (result.hasErrors() || technicianIndService.TechnicianIndValid(technicianInd) == false) {
 
 			// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.technicianInd", result);
 			attr.addFlashAttribute("technicianInd", technicianInd);
+			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
+			attr.addFlashAttribute("specialties",specialties); // y esto
 
 			attr.addFlashAttribute("error", "No se permite tecnicos"
 					+ " con el mismo nombre");
@@ -97,6 +110,8 @@ public class TechnicianIndController {
 		 * with field values
 		 */
 		if (!model.containsAttribute("technicianInd")) {
+			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
+			model.addAttribute("specialties",specialties); // y esto
 			model.addAttribute("technicianInd", technicianIndService.findById(technicianIndId));
 		}
 		return TECHNICIANIND_EDIT_FORM_VIEW;
@@ -113,6 +128,8 @@ public class TechnicianIndController {
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.technicianInd", result);
 			attr.addFlashAttribute("technicianInd", technicianIndDetails);
+			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
+			attr.addFlashAttribute("specialties",specialties); // y esto
 
 			attr.addFlashAttribute("error", "No se permite articulos con el mismo titulo y autor");
 
@@ -121,6 +138,7 @@ public class TechnicianIndController {
 		
 		technicianIndService.update(technicianIndId, technicianIndDetails);
 		model.addAttribute("technicianInd", technicianIndService.findById(technicianIndId));
+		
 		return "redirect:/techniciansInd/" + technicianIndId;
 	}
 

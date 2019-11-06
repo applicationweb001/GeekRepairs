@@ -46,13 +46,24 @@
 									th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span>
 							</div>
 
-							<label for="status">Estado:</label> <select name="status"
-								id="status" class="from-control" required>
-								<option value="Disponible">Disponible</option>
-								<option value="Ocupado">Ocupado</option>
-							</select><br>
+							<div class="form-group">
+								<label for="specialty">Especialidad</label> <select
+									id="specialty" class="form-control" th:field="*{specialties}"
+									multiple="multiple">
+									<option th:each="specialty : ${specialties}"
+										th:text="${specialty.name}" th:value="${specialty.id}"></option>
+								</select>
+							</div>
 							<br>
+							<div class="form-group">
+								<label for="status">Estado:</label> <select name="status"
+									id="status" class="from-control" required>
+									<option value="Disponible">Disponible</option>
+									<option value="Ocupado">Ocupado</option>
+								</select>
+							</div>
 
+							<br>
 
 							<button type="submit" class="btn btn-dark">Save</button>
 							<a class="btn btn-primary" th:href="@{'/techniciansInd'}">Cancel</a>
