@@ -39,8 +39,7 @@ public class RequestServiceImpl implements RequestService{
 		Request request = findById(id);
 		request.setPrice(objectupdate.getPrice());
 		request.setQuantity(objectupdate.getQuantity());
-		request.setProduct(objectupdate.getProduct());
-		
+		request.setProducts(objectupdate.getProducts());
 		requestRepository.save(request);	
 		return request;
 	}
@@ -81,7 +80,7 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public boolean RequestValid(Request request) {
 		List<Request> requests= new ArrayList<>();
-		requestRepository.findByRequestProduct(request.getProduct())
+		requestRepository.findByRequestId(request.getId())
                 .iterator().forEachRemaining(requests::add);
         if (!requests.isEmpty()) { return false;}
         else {return true;}

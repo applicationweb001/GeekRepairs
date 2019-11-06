@@ -20,20 +20,30 @@
 						<table class="table table-responsive highlight">
 							<thead>
 								<tr>
-									<th>Producto</th>
-									<th>Cantidad</th>
+									<th>ID_Solicitud</th>
+									<th>Cantidad_Requerida</th>
 									<th>Precio_Total</th>
-									<th></th>
+									<th>Productos</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="request : ${requestsList}">
-									<td th:text="${request.product}"></td>									
-									<td th:text="${request.quantity}"></td>
-									<td th:text="${request.price}"></td>
+							
+							<tr th:each="request: ${requestsList}">
+									<td th:text="${request.id}"></td>
 									
-									<td
-									th:text="${#dates.format(request.updatedAt, 'dd-MMM-yyyy')}"></td>
+							<tr th:each="request : ${requestsList}">									
+									<td th:text="${request.quantity}"></td>
+									
+							<tr th:each="request : ${requestsList}">									
+									<td th:text="${request.price}"></td>		
+																
+							<td><th:block th:each="product : ${request.products}">
+									<span th:text="${product.name} + ' /'">Product
+										here...</span>
+										
+								</th:block>														
+																												
+									<td	th:text="${#dates.format(request.updatedAt, 'dd-MMM-yyyy')}"></td>
 									
 									<td><a
 										th:href="@{/requests/{id}(id=${request.id})}"><i

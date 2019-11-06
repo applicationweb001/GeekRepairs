@@ -1,5 +1,6 @@
 package com.geek.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -19,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
+import com.geek.model.Product;
 import com.geek.model.Request;
+import com.geek.service.ProductService;
 import com.geek.service.RequestService;
 
 @Controller
@@ -37,6 +40,9 @@ public class RequestController {
 	
 	@Autowired
 	private RequestService requestService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
@@ -62,6 +68,8 @@ public class RequestController {
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("request")) {
 			model.addAttribute("request", new Request());
+			List<Product> products = productService.getAll();
+			model.addAttribute("products",products);
 		}
 		return REQUEST_ADD_FORM_VIEW;
 	}
@@ -74,8 +82,10 @@ public class RequestController {
 		if (result.hasErrors() || requestService.RequestValid(request) == false) {
 
 			// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.request", result);
 			attr.addFlashAttribute("request", request);
+			List<Product> products = productService.getAll(); 
+			attr.addFlashAttribute("product",products);
 
 			attr.addFlashAttribute("error", "No se permite solicitudes"
 					+ " con el mismo nombre");
@@ -97,6 +107,8 @@ public class RequestController {
 		 * with field values
 		 */
 		if (!model.containsAttribute("request")) {
+			List<Product> products = productService.getAll(); 
+			model.addAttribute("products",products); 
 			model.addAttribute("request", requestService.findById(requestId));
 		}
 		return REQUEST_EDIT_FORM_VIEW;
@@ -113,6 +125,8 @@ public class RequestController {
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.request", result);
 			attr.addFlashAttribute("request", requestDetails);
+			List<Product> products = productService.getAll();
+			attr.addFlashAttribute("products",products);
 
 
 			return "redirect:/requests/" + requestDetails.getId() + "/edit";

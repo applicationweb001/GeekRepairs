@@ -33,3 +33,6 @@ Insert into categories(name,created_at,updated_at) values ('CAT3','2018-12-28 00
 Insert into categories(name,created_at,updated_at) values ('CAT4','2018-12-28 00:27:24', '2019-12-28 00:27:24');
 Insert into categories(name,created_at,updated_at) values ('CAT5','2018-12-28 00:27:24', '2019-12-28 00:27:24');
 
+
+Insert into specialties(name,description,created_at,updated_at) values ('SPE1','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24')
+
