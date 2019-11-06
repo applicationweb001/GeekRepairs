@@ -10,10 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.geek.model.Article;
 import com.geek.model.Category;
+import com.geek.model.Request;
 import com.geek.model.Specialty;
 import com.geek.model.TechnicianInd;
 import com.geek.service.ArticleService;
 import com.geek.service.CategoryService;
+import com.geek.service.RequestService;
 import com.geek.service.SpecialtyService;
 import com.geek.service.TechnicianIndService;
 
@@ -31,6 +33,9 @@ public class PageInitPagination {
 	
 	@Autowired
 	private TechnicianIndService technicianIndService;
+	
+	@Autowired
+	private RequestService requestService;
 
 	// pagination
 	private static final int BUTTONS_TO_SHOW = 3;
@@ -119,6 +124,29 @@ public class PageInitPagination {
 		PagerModel pager = new PagerModel(techniciansIndList.getTotalPages(), techniciansIndList.getNumber(), BUTTONS_TO_SHOW);
 
 		initModelView.addObject("techniciansIndList", techniciansIndList);
+		initModelView.addObject("selectedPageSize", evalPageSize);
+		initModelView.addObject("pageSizes", PAGE_SIZES);
+		initModelView.addObject("pager", pager);
+
+		return initModelView;
+	}
+	
+	public  ModelAndView initPaginationRequest(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+		ModelAndView initModelView = new ModelAndView(url);
+		// If pageSize == null, return initial page size
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		
+		/*
+		 * If page == null || page < 0 (to prevent exception), return initial size Else,
+		 * return value of param. decreased by 1
+		 */
+		
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Request> requestsList = requestService.findAll(PageRequest.of(evalPage, evalPageSize));
+		PagerModel pager = new PagerModel(requestsList.getTotalPages(), requestsList.getNumber(), BUTTONS_TO_SHOW);
+
+		initModelView.addObject("requestsList", requestsList);
 		initModelView.addObject("selectedPageSize", evalPageSize);
 		initModelView.addObject("pageSizes", PAGE_SIZES);
 		initModelView.addObject("pager", pager);
