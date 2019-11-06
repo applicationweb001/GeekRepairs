@@ -81,7 +81,19 @@
 						class="material-icons">apps</i> All Requests
 				</a>
 				</li>
+					<li class="dropdown nav-item"><a th:href="@{/products/new}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="fas fa-plus"></i>New Product
+						 				</a>
+				</li>
 				
+				<li class="dropdown nav-item"><a th:href="@{/products}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="material-icons">apps</i> All Products
+				</a>
+				</li>
 				
 				
 
