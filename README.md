@@ -4,7 +4,6 @@ La aplicación web Geek Repairer tiene como objetivo realizar la gestión efecti
 
 ## Contenido y Características 📋
 * Manteniminento de tickets, tecnicos, productos.
-* Graficos Estadisticos - Toma de desiciones
 * Visualización de horarios de tecnicos
 * Priorización de tickets de mantenimiento
 * Asignación de tecnicos
