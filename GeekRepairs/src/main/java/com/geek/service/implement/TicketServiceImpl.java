@@ -16,6 +16,7 @@ import com.geek.service.TicketService;
 
 @Service
 public class TicketServiceImpl implements TicketService {
+	
 	@Autowired
 	private TicketRepository ticketRepository;
 
@@ -38,12 +39,12 @@ public class TicketServiceImpl implements TicketService {
 		Ticket ticket = findById(id);
 
 		ticket.setAddress(objectupdate.getAddress());
-	//	ticket.setClient(objectupdate.getClient());
+		ticket.setClient(objectupdate.getClient());
 		ticket.setDateAttention(objectupdate.getDateAttention());
 		ticket.setDateService(objectupdate.getDateService());
 		ticket.setTypeService(objectupdate.getTypeService());
 		ticket.setStatus(objectupdate.getStatus());
-		ticket.setStartTime(objectupdate.getStartTime());
+		//ticket.setStartTime(objectupdate.getStartTime());
 
 		ticketRepository.save(ticket);
 		return ticket;

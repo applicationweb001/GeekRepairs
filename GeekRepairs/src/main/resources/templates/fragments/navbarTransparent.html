@@ -26,6 +26,14 @@
 				</a>
 				</li>
 				
+				<li class="dropdown nav-item"><a th:href="@{/tickets/new}"
+					class="nav-link" sec:authorize="isAuthenticated()"> 
+					<i
+						class="fas fa-plus"></i>New Ticket
+						 				</a>
+				</li>
+				
+				
 				<li class="dropdown nav-item"><a th:href="@{/categories/new}"
 					class="nav-link" sec:authorize="isAuthenticated()"> 
 					<i

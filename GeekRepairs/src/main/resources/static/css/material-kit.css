@@ -14100,14 +14100,14 @@ textarea {
 
 .navbar.bg-primary {
   color: #fff;
-  background-color: #2DEE20 !important;
+  background-color: #0080ff!important;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(156, 39, 176, 0.46);
 }
 
 .navbar.bg-primary .dropdown-item:hover,
 .navbar.bg-primary .dropdown-item:focus {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #9c27b0;
+  background-color: #0080ff;
   color: #fff;
 }
 
@@ -16139,14 +16139,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   background: -moz-linear-gradient(135deg, rgba(101, 47, 142, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
   background: -webkit-linear-gradient(135deg, rgba(101, 47, 142, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
 }
-
-.green-filter:after {
-  background: rgba(120, 50, 50, 0.64);
-  background: linear-gradient(45deg, rgba(120, 50, 50, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
-  background: -moz-linear-gradient(135deg, rgba(120, 50, 50, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
-  background: -webkit-linear-gradient(135deg, rgba(120, 50, 50, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%);
-}
-
 
 footer {
   padding: 0.9375rem 0;
