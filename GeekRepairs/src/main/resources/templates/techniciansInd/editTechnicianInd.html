@@ -58,6 +58,7 @@
 									id="specialty" class="form-control" th:field="*{specialties}"
 									multiple="multiple">
 									<option th:each="specialty : ${specialties}"
+									
 										th:text="${specialty.name}" th:value="${specialty.id}"></option>
 								</select>
 							</div>

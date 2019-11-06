@@ -47,7 +47,7 @@ public class TechnicianInd extends DateAudit {
 	private String status;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="technicianInd_specialty",joinColumns= {@JoinColumn(name="technicianInd_id")})
+	@JoinTable(name="technicianInd_specialty",joinColumns= {@JoinColumn(name="technicianInd_id")}) // aqui se agrego
 	@NotEmpty(message = "Por favor ingrese al menos una especialidad para el tecnico")
 	private List<Specialty> specialties = new ArrayList<>();
 

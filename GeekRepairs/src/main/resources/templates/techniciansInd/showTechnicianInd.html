@@ -17,6 +17,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <h2 th:text="${technicianInd.name}"></h2>
                     </div>
                     
+                    
                     <h6 th:text="'created at ' + ${#dates.format(technicianInd.createdAt, 'dd-MMM-yyyy HH:mm')}"></h6>
                     <h6 th:text="'updated at ' + ${#dates.format(technicianInd.updatedAt, 'dd-MMM-yyyy HH:mm')}"></h6>
                     

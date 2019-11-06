@@ -89,7 +89,7 @@ public class TechnicianIndController {
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.technicianInd", result);
 			attr.addFlashAttribute("technicianInd", technicianInd);
 			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
-			attr.addFlashAttribute("specialties",specialties); // y esto
+			attr.addFlashAttribute("specialties",specialties); // y esto 1
 
 			attr.addFlashAttribute("error", "No se permite tecnicos"
 					+ " con el mismo nombre");

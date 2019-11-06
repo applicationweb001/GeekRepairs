@@ -42,7 +42,7 @@ public class TechnicianIndServiceImpl implements TechnicianIndService {
 		technicianInd.setCost(objectupdate.getCost());
 		technicianInd.setTelephone(objectupdate.getTelephone());
 		technicianInd.setStatus(objectupdate.getStatus());
-		technicianInd.setSpecialties(objectupdate.getSpecialties());
+		technicianInd.setSpecialties(objectupdate.getSpecialties()); //estyo tambien se agrego
 		technicianIndRepository.save(technicianInd);	
 		return technicianInd;
 	}
