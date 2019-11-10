@@ -27,14 +27,14 @@ public class Ticket extends DateAudit {
 
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	@NotEmpty(message = "Please enter a Client")
 	private Client client;
+	
 	
 	@NotEmpty(message = "Please enter a date attention")
 	@Column(name = "dateAttention", nullable = false)
 	private String dateAttention;
 
-	@Column(name = "dateService", nullable = false)
+	@Column(name = "dateService")
 	private String dateService;
 
 	@NotEmpty(message = "Please enter a typeservice")
@@ -53,8 +53,10 @@ public class Ticket extends DateAudit {
 		this.setUpdatedAt(new Date());
 	}
 	
-	public Ticket(Long id, @NotEmpty(message = "Please enter a Client") Client client,
-			@NotEmpty(message = "Please enter a date attention") String dateAttention, String dateService,
+	public Ticket(Long id, 
+			 Client client,
+			@NotEmpty(message = "Please enter a date attention") String dateAttention, 
+			String dateService,
 			@NotEmpty(message = "Please enter a typeservice") String typeService,
 			@NotEmpty(message = "Please enter a status") String status,
 			@NotEmpty(message = "Please enter a address.") String address) {

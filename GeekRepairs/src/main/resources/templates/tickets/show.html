@@ -15,7 +15,6 @@
 					<div class="col-md-8 offset-md-2 col-sm-12">
 						<div class="title">
 							<h2 th:text="${ticket.id}"></h2>
-							<h2 th:text="${ticket.client.name}"></h2>
 
 						</div>
 						<h3 th:text="${ticket.typeService}"></h3>
@@ -35,6 +34,7 @@
 						sec:authorize="isAuthenticated()">
 						<a th:href="@{'/tickets/' + ${ticket.id} + '/edit'}"
 							class="btn btn-primary">Edit</a>
+							
 					</div>
 				</div>
 			</div>
