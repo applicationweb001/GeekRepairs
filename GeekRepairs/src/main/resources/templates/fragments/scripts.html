@@ -13,6 +13,13 @@
 <script th:src="@{/js/material-kit.js?v=2.0.5}" type="text/javascript"></script>
 <script>
     
+<!-- Menu Toggle Script -->
+$("#menu-toggle").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
+<!-- Menu Toggle Script -->
+    
     $(document).ready(function() {
         //init DateTimePickers
         materialKit.initFormExtendedDatetimepickers();
