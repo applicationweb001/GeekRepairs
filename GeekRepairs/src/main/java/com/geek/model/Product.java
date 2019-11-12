@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,6 +33,11 @@ public class Product extends DateAudit {
 	@Column(name = "name")
 	private String name;
 
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+	
+	
 	@NotEmpty(message = "Please enter a price")
 	@Column(name = "unite_price")
 	private String unitPrice;
@@ -40,9 +47,10 @@ public class Product extends DateAudit {
 		this.setUpdatedAt(new Date());
 	}
 
-	public Product(@NotEmpty String name, @NotEmpty String unitPrice) {
+	public Product(@NotEmpty String name, @NotEmpty String unitPrice,Category category) {
 		this.name = name;
 		this.unitPrice = unitPrice;
+		this.category=category;
 		this.setCreatedAt(new Date());
 		this.setUpdatedAt(new Date());
 
@@ -74,6 +82,14 @@ public class Product extends DateAudit {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	

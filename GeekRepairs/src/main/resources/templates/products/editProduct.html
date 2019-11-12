@@ -51,6 +51,13 @@
 									th:if="${#fields.hasErrors('unitPrice')}"
 									th:errors="*{unitPrice}"></span>
 							</div>
+							<div class="form-group">
+								<label for="category">Categoria</label> <select id="category"
+									class="form-control" th:field="*{category}">
+									<option th:each="category : ${categories}" th:text="${category.name}"
+										th:value="${category.id}"></option>
+								</select>
+							</div>
 
 							<button type="submit" class="btn btn-dark">Save</button>
 							<a class="btn btn-primary" th:href="@{'/products'}">Cancel</a>

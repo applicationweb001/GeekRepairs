@@ -83,7 +83,7 @@ public class TechnicianIndController {
 	public String createTechnicianInd(@Valid TechnicianInd technicianInd, BindingResult result
 			, Model model, RedirectAttributes attr) {
 
-		if (result.hasErrors() || technicianIndService.TechnicianIndValid(technicianInd) == false) {
+		if (result.hasErrors()) {
 
 			// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.technicianInd", result);
@@ -91,8 +91,7 @@ public class TechnicianIndController {
 			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
 			attr.addFlashAttribute("specialties",specialties); // y esto 1
 
-			attr.addFlashAttribute("error", "No se permite tecnicos"
-					+ " con el mismo nombre");
+			
 
 			return "redirect:/techniciansInd/new";
 		}
@@ -123,7 +122,7 @@ public class TechnicianIndController {
 			@Valid TechnicianInd technicianIndDetails,
 			BindingResult result, Model model, RedirectAttributes attr) {
 
-		if (result.hasErrors() || technicianIndService.TechnicianIndValid(technicianIndDetails) == false) {
+		if (result.hasErrors() ) {
 
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.technicianInd", result);
@@ -131,7 +130,7 @@ public class TechnicianIndController {
 			List<Specialty> specialties = specialtyService.getAll(); //se agrego esto
 			attr.addFlashAttribute("specialties",specialties); // y esto
 
-			attr.addFlashAttribute("error", "No se permite articulos con el mismo titulo y autor");
+			
 
 			return "redirect:/techniciansInd/" + technicianIndDetails.getId() + "/edit";
 		}

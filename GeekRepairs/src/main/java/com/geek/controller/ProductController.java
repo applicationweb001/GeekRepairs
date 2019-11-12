@@ -1,5 +1,6 @@
 package com.geek.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -19,8 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
-
+import com.geek.model.Category;
+import com.geek.model.Client;
 import com.geek.model.Product;
+import com.geek.model.Ticket;
+import com.geek.service.CategoryService;
 import com.geek.service.ProductService;
 
 @Controller
@@ -37,6 +41,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
@@ -61,6 +67,8 @@ public class ProductController {
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", new Product());
+			List<Category>categories  = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
 		}
 		return PRODUCT_ADD_FORM_VIEW;
 	}
@@ -70,14 +78,14 @@ public class ProductController {
 	public String createProduct(@Valid Product product, BindingResult result
 			, Model model, RedirectAttributes attr) {
 
-		if (result.hasErrors() || productService.ProductValid(product) == false) {
+		if (result.hasErrors() ) {
 
 			// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", product);
-
-			attr.addFlashAttribute("error", "No se permite productos"
-					+ " con el mismo nombre");
+			List<Category>categories  = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
+			
 
 			return "redirect:/products/new";
 		}
@@ -96,6 +104,8 @@ public class ProductController {
 		 */
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", productService.findById(productId));
+			List<Category> categories = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
 		}
 		return PRODUCT_EDIT_FORM_VIEW;
 	}
@@ -106,13 +116,14 @@ public class ProductController {
 			@Valid Product productDetails,
 			BindingResult result, Model model, RedirectAttributes attr) {
 
-		if (result.hasErrors() || productService.ProductValid(productDetails) == false) {
+		if (result.hasErrors() ) {
 
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", productDetails);
-
-			attr.addFlashAttribute("error", "No se permite productos");
+			List<Category> categories = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
+			
 
 			return "redirect:/products/" + productDetails.getId() + "/edit";
 		}
