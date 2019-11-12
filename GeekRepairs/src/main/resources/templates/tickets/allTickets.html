@@ -30,7 +30,9 @@
 											<th>ID Ticket</th>
 											<th>Cliente</th>
 											<th>Fecha de Servicio</th>
-											<th>Fecha de Atención</th>
+											<th>Fecha de Atencion</th>
+											<th>Estado</th>
+											
 
 											<th></th>
 											<th></th>
@@ -45,6 +47,8 @@
 											<td th:text="${ticket.dateAttention}"></td>
 
 											<td th:text="${ticket.dateService}"></td>
+											<td th:text="${ticket.status}"></td>
+											
 
 											<td
 												th:text="${#dates.format(ticket.updatedAt, 'dd-MMM-yyyy')}"></td>
