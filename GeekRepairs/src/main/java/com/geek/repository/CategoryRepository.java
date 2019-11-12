@@ -23,7 +23,7 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     
     //category name must be unique
     @Query("SELECT a FROM Category a WHERE a.name=:name")
-    List<Category> findByCategoryName(@Param("name") String category);
+    List<Category> findByCategoryName(@Param("name") String name);
 
 	
 	

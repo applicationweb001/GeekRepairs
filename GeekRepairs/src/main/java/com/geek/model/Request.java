@@ -29,10 +29,12 @@ public class Request extends DateAudit{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	
+
+	@NotEmpty(message = "Please enter a quantity")
 	@Column(name="quantity")
 	private int quantity;
-	
+
+	@NotEmpty(message = "Please select a product")
 	@Column(name ="total_price")
 	private double price;
 

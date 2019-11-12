@@ -27,6 +27,14 @@ public class CategoryServiceImpl implements CategoryService{
 		categoryRepository.findAll().iterator().forEachRemaining(categories::add);
 		return categories;
 	}
+	
+	@Override
+	public List<Category> getAllName(String Name) {
+		List<Category> categories = new ArrayList<>();
+		categoryRepository.findByCategoryName(Name).iterator().forEachRemaining(categories::add);
+		return categories;
+	}
+
 
 	@Override
 	public Category create(Category object) {

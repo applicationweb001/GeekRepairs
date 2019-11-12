@@ -38,9 +38,10 @@
 							</div>
 							<div class="form-group">
 								<input th:field="*{price}" id="price" type="text"
-									class="form-control validate"> <label for="price">Precio</label>
+									class="form-control validate"> <label for="price">Precio</label> 
 								<span class="text-danger errorMsg"
 									th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+							
 							</div>
 							<div class="form-group">
 								<label for="product">Producto</label> <select

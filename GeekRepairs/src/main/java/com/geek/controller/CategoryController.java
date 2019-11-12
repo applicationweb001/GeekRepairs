@@ -51,7 +51,25 @@ public class CategoryController {
 	public ModelAndView getAllCategories(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
 		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, CATEGORY_PAGE_VIEW);
+		
+		
+		
 		return modelAndView;
+
+	}
+	
+	
+	
+	
+	@PostMapping
+	public String getAllCategoriesByAlgo(@RequestParam("buscarAlgo") String algo,Model model) {
+
+		model.addAttribute("categoriesList",categoryService.getAllName(algo));
+		
+		
+		
+		
+		return CATEGORY_PAGE_VIEW;
 
 	}
 	
@@ -62,6 +80,7 @@ public class CategoryController {
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("category")) {
 			model.addAttribute("category", new Category());
+			String numero =(String) model.getAttribute("buscarAlgo");
 		}
 		return CATEGORY_ADD_FORM_VIEW;
 	}

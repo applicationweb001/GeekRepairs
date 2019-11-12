@@ -178,6 +178,7 @@ public class PageInitPagination {
 		initModelView.addObject("pager", pager);
 
 		return initModelView;
+	
 	}
 	
 	public  ModelAndView initPaginationProduct(Optional<Integer> pageSize, Optional<Integer> page, String url) {

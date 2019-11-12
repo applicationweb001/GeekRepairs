@@ -4,10 +4,13 @@
 <th:block th:include="fragments/head"></th:block>
 
 <body class="index-page sidebar-collapse">
-	<div class="d-flex" id="wrapper">	<!-- esto -->
-		<th:block th:include="fragments/sidebar"></th:block>	<!-- esto -->
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
 		<!-- Page Content -->
-		<div id="page-content-wrapper">	<!-- esto -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
 			<th:block th:include="fragments/navbarTransparent"></th:block>
 
 			<div class="main">
@@ -15,6 +18,22 @@
 				<div class="section">
 					<div class="container">
 						<div class="row">
+							<form th:action="@{/categories/buscar}" method="post">
+								<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+									<div class="input-group">
+										<input type="search" id="buscarAlgo"
+											placeholder="What're you searching for?"
+											aria-describedby="button-addon1"
+											class="form-control border-0 bg-light">
+										<div class="input-group-append">
+											<button id="button-addon1" type="submit"
+												class="btn btn-link text-primary">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
 							<div class="col-md-8 offset-md-2 col-sm-12">
 
 								<div class="title">
@@ -61,8 +80,10 @@
 			</div>
 
 			<th:block th:include="fragments/footer"></th:block>
-		</div> 	<!-- esto -->
-	</div>	<!-- esto -->
+		</div>
+		<!-- esto -->
+	</div>
+	<!-- esto -->
 	<th:block th:include="fragments/scripts"></th:block>
 </body>
 
