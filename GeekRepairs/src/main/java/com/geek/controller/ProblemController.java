@@ -53,7 +53,7 @@ public class ProblemController {
 	@GetMapping
 	public ModelAndView getAll(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, PRO_PAGE_VIEW);
+		ModelAndView modelAndView = pageInitiPagination.initPaginationProblem(pageSize, page, PRO_PAGE_VIEW);
 		return modelAndView;
 
 	}
@@ -116,7 +116,7 @@ public class ProblemController {
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.problem", result);
 			attr.addFlashAttribute("problem", prob);
 
-			attr.addFlashAttribute("error", "No se permite articulos con el mismo titulo y autor");
+			attr.addFlashAttribute("error", "No se permite cambiar el titulo o nombre");
 
 			return "redirect:/problems/" + prob.getId() + "/edit";
 		}
