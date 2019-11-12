@@ -29,7 +29,7 @@ import com.geek.service.TicketService;
 @RequestMapping("/tickets")
 public class TicketController {
 
-	protected static final String TICKET_VIEW = "tickets/show"; // view template for single Ticket
+	protected static final String TICKET_VIEW = "tickets/showTicket"; // view template for single Ticket
 	protected static final String TICKET_ADD_FORM_VIEW = "tickets/newTicket"; // form for new Ticket
 	protected static final String TICKET_EDIT_FORM_VIEW = "tickets/editTicket"; // form for editing an Ticket
 	protected static final String TICKET_PAGE_VIEW = "tickets/allTickets"; // list with pagination
@@ -86,7 +86,6 @@ public class TicketController {
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			attr.addFlashAttribute("clients",clients); // y esto 1
 
-			attr.addFlashAttribute("error", "No se permite el ticket");
 
 			return "redirect:/tickets/new";
 		
@@ -122,12 +121,11 @@ public class TicketController {
 		if (result.hasErrors()) {
 
 			/// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.ticket", result);
 			attr.addFlashAttribute("ticket", ticketDetails);
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			attr.addFlashAttribute("clients",clients); // y esto 1
 
-			attr.addFlashAttribute("error", "No se permite articulos con el mismo titulo y autor");
 
 			return "redirect:/tickets/" + ticketDetails.getId() + "/edit";
 		}

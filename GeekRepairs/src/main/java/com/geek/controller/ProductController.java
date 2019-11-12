@@ -84,7 +84,7 @@ public class ProductController {
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", product);
 			List<Category>categories  = categoryService.getAll(); //se agrego esto
-			model.addAttribute("categories",categories); // y esto
+			attr.addFlashAttribute("categories",categories); // y esto
 			
 
 			return "redirect:/products/new";
@@ -121,8 +121,8 @@ public class ProductController {
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", productDetails);
-			List<Category> categories = categoryService.getAll(); //se agrego esto
-			model.addAttribute("categories",categories); // y esto
+			List<Category>categories  = categoryService.getAll(); //se agrego esto
+			attr.addFlashAttribute("categories",categories); // y esto
 			
 
 			return "redirect:/products/" + productDetails.getId() + "/edit";

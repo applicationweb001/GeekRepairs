@@ -2,7 +2,7 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
 	<div class="sidebar-heading">SideBar Demo</div>
 	<div class="list-group list-group-flush">
-	
+
 		<a th:href="@{/clients/new}" class="nav-link"
 			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>
 			New Client
@@ -12,7 +12,10 @@
 		</a> <a th:href="@{/tickets/new}" class="nav-link"
 			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
 			Ticket
-		</a> <a th:href="@{/categories/new}" class="nav-link"
+		</a> <a th:href="@{/tickets}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Tickets
+		</a><a th:href="@{/categories/new}" class="nav-link"
 			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
 			Category
 		</a> <a th:href="@{/categories}" class="nav-link"

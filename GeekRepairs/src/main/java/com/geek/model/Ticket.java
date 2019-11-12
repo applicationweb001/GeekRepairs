@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.geek.dateAudit.DateAudit;
 
@@ -29,13 +30,13 @@ public class Ticket extends DateAudit {
 	@JoinColumn(name = "client_id")
 	private Client client;
 	
-	
-	@NotEmpty(message = "Please enter a date attention")
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "dateAttention", nullable = false)
-	private String dateAttention;
-
+	private Date dateAttention;
+	
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "dateService")
-	private String dateService;
+	private Date dateService;
 
 	@NotEmpty(message = "Please enter a typeservice")
 	@Column(name = "typeService")
@@ -52,11 +53,10 @@ public class Ticket extends DateAudit {
 		this.setCreatedAt(new Date());
 		this.setUpdatedAt(new Date());
 	}
+
 	
-	public Ticket(Long id, 
-			 Client client,
-			@NotEmpty(message = "Please enter a date attention") String dateAttention, 
-			String dateService,
+
+	public Ticket(Long id, Client client, Date dateAttention, Date dateService,
 			@NotEmpty(message = "Please enter a typeservice") String typeService,
 			@NotEmpty(message = "Please enter a status") String status,
 			@NotEmpty(message = "Please enter a address.") String address) {
@@ -68,76 +68,81 @@ public class Ticket extends DateAudit {
 		this.typeService = typeService;
 		this.status = status;
 		this.address = address;
-		
-		this.setCreatedAt(new Date());
-		this.setUpdatedAt(new Date());
 	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-/*
+
+
 	public Client getClient() {
 		return client;
 	}
 
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
-*/
-	public String getDateAttention() {
+
+
+	public Date getDateAttention() {
 		return dateAttention;
 	}
 
-	public void setDateAttention(String dateAttention) {
+
+	public void setDateAttention(Date dateAttention) {
 		this.dateAttention = dateAttention;
 	}
 
-	public String getDateService() {
+
+	public Date getDateService() {
 		return dateService;
 	}
 
-	public void setDateService(String dateService) {
+
+	public void setDateService(Date dateService) {
 		this.dateService = dateService;
 	}
+
 
 	public String getTypeService() {
 		return typeService;
 	}
 
+
 	public void setTypeService(String typeService) {
 		this.typeService = typeService;
 	}
+
 
 	public String getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 	public String getAddress() {
 		return address;
 	}
 
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
 	
+	
+
 	
 	
 }

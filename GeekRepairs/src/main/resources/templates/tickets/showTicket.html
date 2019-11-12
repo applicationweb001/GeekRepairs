@@ -13,7 +13,6 @@
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<!-- esto -->
-
 			<th:block th:include="fragments/navbarTransparent"></th:block>
 
 			<div class="main">
@@ -23,13 +22,17 @@
 						<div class="row">
 							<div class="col-md-8 offset-md-2 col-sm-12">
 								<div class="title">
-									<h2 th:text="${category.name}"></h2>
+									<h2 th:text="${ticket.id}"></h2>
+
 								</div>
+								<h3 th:text="${ticket.typeService}"></h3>
+								<h3 th:text="${ticket.status}"></h3>
+
 
 								<h6
-									th:text="'created at ' + ${#dates.format(category.createdAt, 'dd-MMM-yyyy HH:mm')}"></h6>
+									th:text="'created at ' + ${#dates.format(ticket.createdAt, 'dd-MMM-yyyy HH:mm')}"></h6>
 								<h6
-									th:text="'updated at ' + ${#dates.format(category.updatedAt, 'dd-MMM-yyyy HH:mm')}"></h6>
+									th:text="'updated at ' + ${#dates.format(ticket.updatedAt, 'dd-MMM-yyyy HH:mm')}"></h6>
 
 							</div>
 						</div>
@@ -37,8 +40,9 @@
 						<div class="row">
 							<div class="col-md-8 offset-md-2 col-sm-12"
 								sec:authorize="isAuthenticated()">
-								<a th:href="@{'/categories/' + ${category.id} + '/edit'}"
+								<a th:href="@{'/tickets/' + ${ticket.id} + '/edit'}"
 									class="btn btn-primary">Edit</a>
+
 							</div>
 						</div>
 					</div>
