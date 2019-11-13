@@ -45,7 +45,9 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setTypeService(objectupdate.getTypeService());
 		ticket.setStatus(objectupdate.getStatus());
 		//ticket.setStartTime(objectupdate.getStartTime());
-
+		
+		ticket.setProblem(objectupdate.getProblem());
+		
 		ticketRepository.save(ticket);
 		return ticket;
 	}

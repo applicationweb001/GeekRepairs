@@ -29,6 +29,7 @@
 										<tr>
 											<th>ID Ticket</th>
 											<th>Cliente</th>
+											<th>Problema</th>
 											<th>Fecha de Servicio</th>
 											<th>Fecha de Atencion</th>
 											<th>Estado</th>
@@ -43,6 +44,8 @@
 										<tr th:each="ticket : ${ticketsList}">
 											<td th:text="${ticket.id}"></td>
 											<td th:text="${ticket.client.name}"></td>
+											<td th:text="${ticket.problem.name}"></td>
+
 
 											<td th:text="${ticket.dateAttention}"></td>
 

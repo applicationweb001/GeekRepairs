@@ -21,8 +21,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
 import com.geek.model.Client;
+import com.geek.model.Problem;
 import com.geek.model.Ticket;
 import com.geek.service.ClientService;
+import com.geek.service.ProblemService;
 import com.geek.service.TicketService;
 
 @Controller
@@ -43,6 +45,9 @@ public class TicketController {
 	
 	@Autowired
 	private TicketService ticketService;
+	
+	@Autowired
+	private ProblemService problemService;
 	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
@@ -70,6 +75,9 @@ public class TicketController {
 			model.addAttribute("ticket", new Ticket());
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			model.addAttribute("clients",clients); // y esto
+			List<Problem> problems= problemService.getAll(); //se agrego esto
+			model.addAttribute("problems",problems); // y esto
+			
 		}
 		return TICKET_ADD_FORM_VIEW;
 	}
@@ -85,7 +93,8 @@ public class TicketController {
 			attr.addFlashAttribute("ticket", ticket);
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			attr.addFlashAttribute("clients",clients); // y esto 1
-
+			List<Problem> problems= problemService.getAll(); //se agrego esto
+			attr.addFlashAttribute("problems",problems); // y esto
 
 			return "redirect:/tickets/new";
 		
@@ -108,6 +117,8 @@ public class TicketController {
 			model.addAttribute("ticket", ticketService.findById(ticketId));
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			model.addAttribute("clients",clients); // y esto
+			List<Problem> problems= problemService.getAll(); //se agrego esto
+			model.addAttribute("problems",problems); // y esto
 		}
 		return TICKET_EDIT_FORM_VIEW;
 	}
@@ -125,6 +136,8 @@ public class TicketController {
 			attr.addFlashAttribute("ticket", ticketDetails);
 			List<Client> clients = clientService.getAll(); //se agrego esto
 			attr.addFlashAttribute("clients",clients); // y esto 1
+			List<Problem> problems= problemService.getAll(); //se agrego esto
+			attr.addFlashAttribute("problems",problems); // y esto
 
 
 			return "redirect:/tickets/" + ticketDetails.getId() + "/edit";

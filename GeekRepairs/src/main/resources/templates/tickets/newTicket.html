@@ -60,6 +60,16 @@
 											th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
 									</div>
 
+<div class="form-group">
+										<label for="problem">Problema</label> <select id="problem"
+											class="form-control" th:field="*{problem}">
+											<option th:each="problem : ${problems}"
+												th:text="${problem.name}" th:value="${problem.id}"></option>
+										</select>
+										<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('problem')}" th:errors="*{problem}"></span>
+									</div>
+
 
 									<div class="form-group">
 

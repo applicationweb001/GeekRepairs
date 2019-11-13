@@ -1,13 +1,18 @@
 package com.geek.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +26,11 @@ import com.geek.dateAudit.DateAudit;
 @Entity
 @Table(name = "tickets")
 public class Ticket extends DateAudit {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ticket_id")
@@ -49,6 +59,26 @@ public class Ticket extends DateAudit {
 
 	@NotEmpty(message = "Please enter a address.")
 	private String address;
+	
+
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="ticket_problems",joinColumns= {@JoinColumn(name="problem_id")}) // aqui se agrego
+	@NotEmpty(message = "Por favor ingrese al menos un problema para el ticket")
+	private List<Problem> problem= new ArrayList<>();
+
+	
+	public List<Problem> getProblem() {
+		return problem;
+	}
+
+	public void setProblem(List<Problem> problem) {
+		this.problem = problem;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Ticket() {
 		this.setCreatedAt(new Date());
