@@ -32,14 +32,10 @@
 							</thead>
 							<tbody>
 							
-							<tr th:each="request: ${requestsList}">
-									<td th:text="${request.id}"></td>
-									
-							<tr th:each="request : ${requestsList}">									
-									<td th:text="${request.quantity}"></td>
-									
-							<tr th:each="request : ${requestsList}">									
-									<td th:text="${request.price}"></td>		
+							<tr th:each="request : ${requestsList}">
+									<td th:text="${request.id}"></td>																	
+									<td th:text="${request.quantity}"></td>			
+							     	<td th:text="${request.price}"></td>		
 																
 							<td><th:block th:each="product : ${request.products}">
 									<span th:text="${product.name} + ' /'">Product
