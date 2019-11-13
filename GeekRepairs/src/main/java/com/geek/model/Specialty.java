@@ -40,8 +40,6 @@ public class Specialty extends DateAudit{
         this.name = name;
         this.description = description;
        
-        this.setCreatedAt(new Date());
-        this.setUpdatedAt(new Date());
         
     }
 

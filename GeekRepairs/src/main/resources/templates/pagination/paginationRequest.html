@@ -16,11 +16,11 @@
                 <li class="page-item"
                     th:class="${requestsList.number == 0} ? disabled"><a
                     class="page-link"
-                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=1)}"></a></li>
+                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
                 <li class="page-item"
                     th:class="${requestsList.number == 0} ? disabled"><a
                     class="page-link"
-                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestList.number})}">1</a>
+                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestsList.number})}">â†�</a>
                 </li>
                 <li
                     th:class="${requestsList.number == (page - 1)} ? 'active page-item'"
@@ -32,12 +32,12 @@
                 <li class="page-item"
                     th:class="${requestsList.number + 1 == requestsList.totalPages} ? disabled">
                     <a class="page-link"
-                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestsList.number + 2})}">1</a>
+                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestsList.number + 2})}">â†’</a>
                 </li>
                 <li class="page-item"
                     th:class="${requestsList.number + 1 == requestsList.totalPages} ? disabled">
                     <a class="page-link"
-                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestsList.totalPages})}">1</a>
+                    th:href="@{/requests/(pageSize=${selectedPageSize}, page=${requestsList.totalPages})}">Â»</a>
                 </li>
             </ul>
         </div>

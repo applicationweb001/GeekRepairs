@@ -29,17 +29,20 @@ public class Request extends DateAudit{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	
+
+	@NotEmpty(message = "Please enter a quantity")
 	@Column(name="quantity")
 	private int quantity;
 	
+
+	@NotEmpty(message = "Please enter a price")
 	@Column(name ="total_price")
 	private double price;
 
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="Request_Product",joinColumns= {@JoinColumn(name="request_id")}) // aqui se agrego
-	@NotEmpty(message = "Por favor ingrese un Producto")
+	@NotEmpty(message = "Please enter a Product")
 	private List<Product> products = new ArrayList<>();
 
 	
@@ -69,8 +72,6 @@ public class Request extends DateAudit{
         this.quantity = quantity;
         this.price = price;
        
-        this.setCreatedAt(new Date());
-        this.setUpdatedAt(new Date());
         
     }
 

@@ -74,7 +74,7 @@ public class SpecialtyController {
 		if (result.hasErrors() || specialtyService.SpecialtyValid(specialty) == false) {
 
 			// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.specialty", result);
 			attr.addFlashAttribute("specialty", specialty);
 
 			attr.addFlashAttribute("error", "No se permite especialidades"
