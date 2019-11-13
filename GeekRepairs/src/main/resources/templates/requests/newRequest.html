@@ -28,14 +28,14 @@
 							
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
 								<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-							</div>
-							
+							</div>							
 								<div class="form-group">
 								<input th:field="*{quantity}" id="quantity" type="text"
-									class="form-control validate"> <label for="name">Cantidad_Requerida</label>
+									class="form-control validate"> <label for="quantity">Cantidad_Requerida</label>
 								<span class="text-danger errorMsg"
 									th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
 							</div>
+							
 							<div class="form-group">
 								<input th:field="*{price}" id="price" type="text"
 									class="form-control validate"> <label for="price">Precio</label>

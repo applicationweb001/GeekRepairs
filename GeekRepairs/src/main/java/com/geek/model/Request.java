@@ -32,12 +32,12 @@ public class Request extends DateAudit{
 
 	@NotEmpty(message = "Please enter a quantity")
 	@Column(name="quantity")
-	private int quantity;
+	private String quantity;
 	
 
 	@NotEmpty(message = "Please enter a price")
 	@Column(name ="total_price")
-	private double price;
+	private String price;
 
 	
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -55,11 +55,11 @@ public class Request extends DateAudit{
 	}
 
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -68,7 +68,7 @@ public class Request extends DateAudit{
         this.setUpdatedAt(new Date());
     }
 
-    public Request(@NotEmpty int quantity,@NotEmpty double price) {
+    public Request(@NotEmpty String quantity,@NotEmpty String price) {
         this.quantity = quantity;
         this.price = price;
        
@@ -84,11 +84,11 @@ public class Request extends DateAudit{
 	}
 
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 
