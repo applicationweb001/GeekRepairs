@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,9 +29,7 @@ import com.geek.dateAudit.DateAudit;
 @Table(name = "tickets")
 public class Ticket extends DateAudit {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,10 +37,10 @@ public class Ticket extends DateAudit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "client_id")
 	private Client client;
-
+ 
 	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateAttention", nullable = false)
@@ -60,8 +60,10 @@ public class Ticket extends DateAudit {
 	@NotEmpty(message = "Please enter a address.")
 	private String address;
 	
-
-
+	@OneToMany(fetch= FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "ticket_fk_id")
+	private List<TicketTechnician> ticketTechnician;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="ticket_problems",joinColumns= {@JoinColumn(name="problem_id")}) // aqui se agrego
 	@NotEmpty(message = "Por favor ingrese al menos un problema para el ticket")

@@ -34,7 +34,7 @@ public class TicketController {
 	protected static final String TICKET_VIEW = "tickets/showTicket"; // view template for single Ticket
 	protected static final String TICKET_ADD_FORM_VIEW = "tickets/newTicket"; // form for new Ticket
 	protected static final String TICKET_EDIT_FORM_VIEW = "tickets/editTicket"; // form for editing an Ticket
-	protected static final String TICKET_PAGE_VIEW = "tickets/allTickets"; // list with pagination
+	protected static final String TICKET_PAGE_VIEW = "tickets/assignTechTickets"; // list with pagination
 	protected static final String INDEX_VIEW = "index"; // tickets with pagination
 	
 	@Autowired

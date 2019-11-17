@@ -23,9 +23,7 @@ public class RequestDetail {
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product productid;
-
-	
-	 
+ 
 	public Long getId() {
 		return id;
 	}

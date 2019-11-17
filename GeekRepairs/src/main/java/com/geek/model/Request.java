@@ -49,9 +49,7 @@ public class Request extends DateAudit{
 	@OneToMany(fetch= FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestdetail_id")
 	private List<RequestDetail> requestDetail;
-	
-	
-	
+		
 	
 	public Request() {
 		requestDetail = new ArrayList<>();
