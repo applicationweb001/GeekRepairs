@@ -16,6 +16,7 @@ import com.geek.model.Product;
 import com.geek.model.Request;
 import com.geek.model.RequestDetail;
 import com.geek.model.Specialty;
+import com.geek.model.Activity;
 import com.geek.model.Adviser;
 import com.geek.model.TechnicianInd;
 import com.geek.model.Ticket;
@@ -26,6 +27,7 @@ import com.geek.service.ProblemService;
 import com.geek.service.ProductService;
 import com.geek.service.RequestService;
 import com.geek.service.SpecialtyService;
+import com.geek.service.ActivityService;
 import com.geek.service.AdviserService;
 import com.geek.service.TechnicianIndService;
 import com.geek.service.TicketService;
@@ -63,6 +65,9 @@ public class PageInitPagination {
 	
 	@Autowired
 	private ProblemService probService;
+	
+	@Autowired
+	private ActivityService actService;
 
 	// pagination
 	private static final int BUTTONS_TO_SHOW = 3;
@@ -292,5 +297,23 @@ public class PageInitPagination {
 		return initModelView;
 	}
 	
+	public  ModelAndView initPaginationActivity(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+		ModelAndView initModelView = new ModelAndView(url);
+	
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		
+	
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Activity> actList = actService.findAll(PageRequest.of(evalPage, evalPageSize));
+		PagerModel pager = new PagerModel(actList.getTotalPages(), actList.getNumber(), BUTTONS_TO_SHOW);
+
+		initModelView.addObject("actList", actList);
+		initModelView.addObject("selectedPageSize", evalPageSize);
+		initModelView.addObject("pageSizes", PAGE_SIZES);
+		initModelView.addObject("pager", pager);
+
+		return initModelView;
+	}
 	
 }
