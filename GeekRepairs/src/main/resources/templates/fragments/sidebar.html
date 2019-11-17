@@ -58,6 +58,14 @@
 			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
 			All Problems
 		</a>
+		<a th:href="@{/activities/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Activity
+		</a>
+ 		<a th:href="@{/activities}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Activities
+		</a>
 
 	</div>
 </div>

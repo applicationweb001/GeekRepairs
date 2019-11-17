@@ -39,6 +39,33 @@
 									</span>	
 					</div>		
 				
+				<div class="form-group">
+										<label for="startDate">Fecha de Inicio</label> <input
+											type="date" class="form-control" th:field="*{startDate}"
+											id="startDate" />
+											<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
+									</div>
+									
+									<div class="form-group">
+										<label for="endingDate">Fecha de Fin</label> <input
+											type="date" class="form-control" th:field="*{endingDate}"
+											id="endingDate" />
+											<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('endingDate')}" th:errors="*{endingDate}"></span>
+									</div>
+									
+									<div class="form-group">
+
+										<label for="state">Estado</label> <select
+											name="state" id="state" class="form-control"
+											required>
+											<option value="En_Proceso">En Proceso</option>
+											<option value="Terminado" selected>Terminado</option>
+										</select>
+										<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+									</div>
 							
 							
 					<a th:href="@{'/activities/'}" class="btn btn-primary">Cancelar</a>
@@ -57,4 +84,21 @@
 	<th:block th:include="fragments/scripts"></th:block>
 
 </body>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = (day) + "/" + +(month) + "/" + +now.getFullYear();
+		$("#fecha").val(today);
+	});
+</script>
+
 </html>

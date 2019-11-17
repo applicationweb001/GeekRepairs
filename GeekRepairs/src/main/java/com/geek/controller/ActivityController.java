@@ -49,7 +49,7 @@ public class ActivityController {
 	@GetMapping
 	public ModelAndView getAllAct(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitPagination.initPaginationAdviser(pageSize, page, ACT_PAGE_VIEW);
+		ModelAndView modelAndView = pageInitPagination.initPaginationActivity(pageSize, page, ACT_PAGE_VIEW);
 
 		return modelAndView;
 	}
