@@ -89,7 +89,7 @@ public class PageInitPagination {
 		return initModelView;
 	}
 	
-	public  ModelAndView initPaginationCategory(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+	public  ModelAndView initPaginationCategory(Optional<Integer> pageSize, Optional<Integer> page, String url,int list,String name) {
 		ModelAndView initModelView = new ModelAndView(url);
 		// If pageSize == null, return initial page size
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
@@ -101,7 +101,23 @@ public class PageInitPagination {
 		
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<Category> categoriesList = categoryService.findAll(PageRequest.of(evalPage, evalPageSize));
+		Page<Category> categoriesList;
+		
+		switch (list) {
+		case 1:
+			categoriesList = categoryService.findAll(PageRequest.of(evalPage, evalPageSize));
+			break;
+		case 2:
+			categoriesList = categoryService.findByName(PageRequest.of(evalPage, evalPageSize),name);
+			break;
+					
+
+		default:
+			categoriesList = categoryService.findAll(PageRequest.of(evalPage, evalPageSize));
+			break;
+		}
+		
+		
 		PagerModel pager = new PagerModel(categoriesList.getTotalPages(), categoriesList.getNumber(), BUTTONS_TO_SHOW);
 
 		initModelView.addObject("categoriesList", categoriesList);

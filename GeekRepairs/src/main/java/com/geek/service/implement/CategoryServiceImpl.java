@@ -28,14 +28,7 @@ public class CategoryServiceImpl implements CategoryService{
 		return categories;
 	}
 	
-	@Override
-	public List<Category> getAllName(String Name) {
-		List<Category> categories = new ArrayList<>();
-		categoryRepository.findByCategoryName(Name).iterator().forEachRemaining(categories::add);
-		return categories;
-	}
-
-
+	
 	@Override
 	public Category create(Category object) {
 		Category newcategory;
@@ -85,15 +78,16 @@ public class CategoryServiceImpl implements CategoryService{
 	public Page<Category> findAll(Pageable pageable) {
 		 return categoryRepository.findAll(pageable);
 	}
-
+	
+	@Override
+	public Page<Category> findByName(Pageable pageable,String name) {
+		 return categoryRepository.findByCategoryName(pageable, name);
+	}
+	
 	@Override
 	public boolean CategoryValid(Category category) {
-		List<Category> categories= new ArrayList<>();
-        categoryRepository.findByCategoryName(category.getName())
-                .iterator().forEachRemaining(categories::add);
-        if (!categories.isEmpty()) { return false;}
-        else {return true;}
-		
+	
+		return true;
 	}
 
 }

@@ -18,22 +18,22 @@
 				<div class="section">
 					<div class="container">
 						<div class="row">
-							<form th:action="@{/categories/buscar}" method="post">
-								<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-									<div class="input-group">
-										<input type="search" id="buscarAlgo"
-											placeholder="What're you searching for?"
-											aria-describedby="button-addon1"
-											class="form-control border-0 bg-light">
-										<div class="input-group-append">
-											<button id="button-addon1" type="submit"
-												class="btn btn-link text-primary">
-												<i class="fa fa-search"></i>
-											</button>
-										</div>
+
+							<form th:action="@{/categories/search}" th:method="get">
+								<div class="row">
+									<div class="col">
+										<input type="text" class="form-control" id="name"
+											name="name" placeholder="Ingrese el nombre de la categoria">
+									</div>
+									<div class="col">
+										<input type="submit" class="btn btn-primary" value="Buscar" />
 									</div>
 								</div>
+
 							</form>
+
+
+							
 							<div class="col-md-8 offset-md-2 col-sm-12">
 
 								<div class="title">

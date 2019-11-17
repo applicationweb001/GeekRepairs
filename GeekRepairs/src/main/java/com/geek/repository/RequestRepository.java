@@ -26,6 +26,8 @@ public interface RequestRepository extends PagingAndSortingRepository<Request, L
 
     @Query("SELECT r FROM Request r WHERE r.id=:id")
     List<Request> findByRequestId(@Param("id") Long Id);
+    
+    
     Page<Request> findAll(Pageable pageable);
 	
 	

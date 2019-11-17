@@ -25,7 +25,7 @@ import com.geek.service.CategoryService;
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
-		
+
 	protected static final String CATEGORY_VIEW = "categories/showCategory"; // view template for single article
 	protected static final String CATEGORY_ADD_FORM_VIEW = "categories/newCategory"; // form for new article
 	protected static final String CATEGORY_EDIT_FORM_VIEW = "categories/editCategory"; // form for editing an article
@@ -34,61 +34,53 @@ public class CategoryController {
 
 	@Autowired
 	private PageInitPagination pageInitiPagination;
-	
+
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public String getCategoryById(@PathVariable(value = "id") Long categoryId, Model model) {
 		model.addAttribute("category", categoryService.findById(categoryId));
 		return CATEGORY_VIEW;
 	}
-	
-	
-	@Secured({"ROLE_ADMIN","ROLE_USER"})
+
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping
 	public ModelAndView getAllCategories(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, CATEGORY_PAGE_VIEW);
-		
-		
-		
+		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, CATEGORY_PAGE_VIEW,1,"");
+
 		return modelAndView;
 
 	}
-	
-	
-	
-	
-	@PostMapping
-	public String getAllCategoriesByAlgo(@RequestParam("buscarAlgo") String algo,Model model) {
 
-		model.addAttribute("categoriesList",categoryService.getAllName(algo));
+	@GetMapping("/search")
+	public ModelAndView getAllCategoriesByAlgo(@RequestParam("name") String algo,@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page) {
+
 		
-		
-		
-		
-		return CATEGORY_PAGE_VIEW;
+		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, CATEGORY_PAGE_VIEW,2,algo);
+
+		return modelAndView;
 
 	}
-	
-	@Secured({"ROLE_ADMIN"})
+
+	@Secured({ "ROLE_ADMIN" })
 	@GetMapping("/new")
 	public String newCategory(Model model) {
 
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("category")) {
 			model.addAttribute("category", new Category());
-			String numero =(String) model.getAttribute("buscarAlgo");
+			String numero = (String) model.getAttribute("buscarAlgo");
 		}
 		return CATEGORY_ADD_FORM_VIEW;
 	}
 
-	@Secured({"ROLE_ADMIN"})
+	@Secured({ "ROLE_ADMIN" })
 	@PostMapping("/create")
-	public String createCategory(@Valid Category category, BindingResult result
-			, Model model, RedirectAttributes attr) {
+	public String createCategory(@Valid Category category, BindingResult result, Model model, RedirectAttributes attr) {
 
 		if (result.hasErrors() || categoryService.CategoryValid(category) == false) {
 
@@ -96,18 +88,17 @@ public class CategoryController {
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.article", result);
 			attr.addFlashAttribute("category", category);
 
-			attr.addFlashAttribute("error", "No se permite categorias"
-					+ " con el mismo nombre");
+			attr.addFlashAttribute("error", "No se permite categorias" + " con el mismo nombre");
 
 			return "redirect:/categories/new";
 		}
-		Category newCategory= categoryService.create(category);
+		Category newCategory = categoryService.create(category);
 		model.addAttribute("category", newCategory);
 
 		return "redirect:/categories/" + newCategory.getId();
 	}
-	
-	@Secured({"ROLE_ADMIN"})
+
+	@Secured({ "ROLE_ADMIN" })
 	@GetMapping("{id}/edit")
 	public String editCategory(@PathVariable(value = "id") Long categoryId, Model model) {
 		/*
@@ -119,11 +110,10 @@ public class CategoryController {
 		}
 		return CATEGORY_EDIT_FORM_VIEW;
 	}
-	
-	@Secured({"ROLE_ADMIN"})
+
+	@Secured({ "ROLE_ADMIN" })
 	@PostMapping(path = "/{id}/update")
-	public String updateCategory(@PathVariable(value = "id") Long categoryId, 
-			@Valid Category categoryDetails,
+	public String updateCategory(@PathVariable(value = "id") Long categoryId, @Valid Category categoryDetails,
 			BindingResult result, Model model, RedirectAttributes attr) {
 
 		if (result.hasErrors() || categoryService.CategoryValid(categoryDetails) == false) {
@@ -136,19 +126,19 @@ public class CategoryController {
 
 			return "redirect:/categories/" + categoryDetails.getId() + "/edit";
 		}
-		
+
 		categoryService.update(categoryId, categoryDetails);
 		model.addAttribute("category", categoryService.findById(categoryId));
 		return "redirect:/categories/" + categoryId;
 	}
 
-	@Secured({"ROLE_ADMIN"})
+	@Secured({ "ROLE_ADMIN" })
 	@GetMapping(value = "/{id}/delete")
 	public String deleteCategory(@PathVariable("id") Long categoryId) {
-		//Article article = articleService.findById(categoryId);
+		// Article article = articleService.findById(categoryId);
 		// String title = article.getTitle();
 		categoryService.delete(categoryId);
 		return "redirect:/categories";
 	}
-	
+
 }
