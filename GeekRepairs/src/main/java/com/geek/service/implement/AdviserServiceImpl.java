@@ -11,34 +11,34 @@ import org.springframework.stereotype.Service;
 
 
 import com.geek.exception.ResourceNotFoundException;
-import com.geek.model.TecRemote;
+import com.geek.model.Adviser;
 
-import com.geek.repository.TecRemoteRepository;
-import com.geek.service.TecRemoteService;
+import com.geek.repository.AdviserRepository;
+import com.geek.service.AdviserService;
 
 @Service
-public class TecRemoteServiceImpl implements TecRemoteService {
+public class AdviserServiceImpl implements AdviserService {
 
 	@Autowired
-	private TecRemoteRepository tecRepository;
+	private AdviserRepository tecRepository;
 
 	@Override
-	public List<TecRemote> getAll() {
-		List<TecRemote> tecremote= new ArrayList<>();
+	public List<Adviser> getAll() {
+		List<Adviser> tecremote= new ArrayList<>();
 		tecRepository.findAll().iterator().forEachRemaining(tecremote::add);
 		return tecremote;
 	}
 
 	@Override
-	public TecRemote create(TecRemote entity) {
-		TecRemote newTec;
+	public Adviser create(Adviser entity) {
+		Adviser newTec;
 		newTec = tecRepository.save(entity);
 		return newTec;
 	}
 
 	@Override
-	public TecRemote update(Long id, TecRemote entity) {
-		TecRemote tecremote= findById(id);
+	public Adviser update(Long id, Adviser entity) {
+		Adviser tecremote= findById(id);
 
 		tecremote.setEmail(entity.getEmail());
 		tecremote.setName(entity.getName());
@@ -56,8 +56,8 @@ public class TecRemoteServiceImpl implements TecRemoteService {
 	}
 
 	@Override
-	public TecRemote findById(Long id) {
-		Optional<TecRemote> article = tecRepository.findById(id);
+	public Adviser findById(Long id) {
+		Optional<Adviser> article = tecRepository.findById(id);
 
 		if (!article.isPresent()) {
 			throw new ResourceNotFoundException("No hay tecnico remoto con ID = " + id);
@@ -68,14 +68,14 @@ public class TecRemoteServiceImpl implements TecRemoteService {
 	}
 
 	@Override
-	public Page<TecRemote> findAll(Pageable pageable) {
+	public Page<Adviser> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return tecRepository.findAll(pageable);
 	}
 
 	@Override
-	public TecRemote getLatestEntry() {
-		 List<TecRemote> technician= getAll();
+	public Adviser getLatestEntry() {
+		 List<Adviser> technician= getAll();
 	        if(technician.isEmpty()){
 	            return null;
 	        }
@@ -85,10 +85,11 @@ public class TecRemoteServiceImpl implements TecRemoteService {
 	        }
 	}
 
+
 	@Override
-	public boolean TechnicianIndValid(TecRemote technician) {
-		List<TecRemote> technicians= new ArrayList<>();
-		tecRepository.findByTechnicianIndName(technician.getName())
+	public boolean AdviserIndValid(Adviser tec) {
+		List<Adviser> technicians= new ArrayList<>();
+		tecRepository.findByTechnicianIndName(tec.getName())
                 .iterator().forEachRemaining(technicians::add);
         if (!technicians.isEmpty()) { return false;}
         else {return true;}

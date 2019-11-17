@@ -18,7 +18,7 @@
 					<div class="col-md-8 offset-md-2 col-sm-12">
 
 						<div class="title">
-							<h2>Table with Pagination</h2>
+							<h2>Lista de Asesores registrados</h2>
 						</div>
 
 
@@ -36,26 +36,26 @@
 					
 					
 						
-						<tr th:each="tecremote : ${tecList}">
+						<tr th:each="adviser : ${tecList}">
 
-							<td th:text="${tecremote.id}"></td>
-							<td th:text="${tecremote.name}"></td>
-							<td th:text="${tecremote.surname}"></td>
-							<td th:text="${tecremote.email}"></td>
-							<td th:text="${tecremote.mobile}"></td>
+							<td th:text="${adviser.id}"></td>
+							<td th:text="${adviser.name}"></td>
+							<td th:text="${adviser.surname}"></td>
+							<td th:text="${adviser.email}"></td>
+							<td th:text="${adviser.mobile}"></td>
 						
 						
 						
 									
 									
 							<td><a
-										th:href="@{/tecsremote/{id}(id=${tecremote.id})}"><i
+										th:href="@{/advisors/{id}(id=${adviser.id})}"><i
 											class="fab fa-readme"></i></a></td>
 									<td><a
-										th:href="@{/tecsremote/{id}/edit(id=${tecremote.id})}"><i
+										th:href="@{/advisors/{id}/edit(id=${adviser.id})}"><i
 											class="far fa-edit"></i></a></td>
 									<td><a
-										th:href="@{/tecsremote/{id}/delete(id=${tecremote.id})}"><i
+										th:href="@{/advisors/{id}/delete(id=${adviser.id})}"><i
 											class="fas fa-trash-alt"></i></a></td>
 							
 						</tr>
@@ -64,7 +64,7 @@
 			</div>
 			
 			<div class="container">
-			<th:block th:include="pagination/paginationTecRemote"></th:block>
+			<th:block th:include="pagination/paginationAdviser"></th:block>
 			</div>
 			
 			

@@ -13,8 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import com.geek.dateAudit.DateAudit;
 
 @Entity
-@Table(name="tecsremote")
-public class TecRemote extends DateAudit  {
+@Table(name="advisors")
+public class Adviser extends DateAudit  {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class TecRemote extends DateAudit  {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name ="tec_id")
+	@Column(name ="adv_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -44,13 +44,13 @@ public class TecRemote extends DateAudit  {
 	private String mobile;
 
 
-	public TecRemote() {
+	public Adviser() {
 		this.setCreatedAt(new Date());
 		this.setUpdatedAt(new Date());	
 	}
 	
 
-	public TecRemote(@NotEmpty String name, @NotEmpty String telephone, @NotEmpty String email,
+	public Adviser(@NotEmpty String name, @NotEmpty String telephone, @NotEmpty String email,
 			@NotEmpty String surname) {
 		this.name = name;
 		this.mobile = telephone;

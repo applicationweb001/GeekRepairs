@@ -20,36 +20,36 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
 
-import com.geek.model.TecRemote;
+import com.geek.model.Adviser;
 
-import com.geek.service.TecRemoteService;
+import com.geek.service.AdviserService;
 
 @Controller
-@RequestMapping("/tecsremote")
-public class TecRemoteController {
+@RequestMapping("/advisors")
+public class AdviserController {
 
-	protected static final String TECR_VIEW = "tecsremote/show"; // view template for single article
-	protected static final String TECR_ADD_FORM_VIEW = "tecsremote/new"; // form for new article
-	protected static final String TECR_EDIT_FORM_VIEW = "tecsremote/edit"; // form for editing an article
-	protected static final String TECR_PAGE_VIEW = "tecsremote/list"; // list with pagination
+	protected static final String ADV_VIEW = "advisors/show"; // view template for single article
+	protected static final String ADV_ADD_FORM_VIEW = "advisors/new"; // form for new article
+	protected static final String ADV_EDIT_FORM_VIEW = "advisors/edit"; // form for editing an article
+	protected static final String ADV_PAGE_VIEW = "advisors/list"; // list with pagination
 	protected static final String INDEX_VIEW = "index";
 	@Autowired
 	private PageInitPagination pageInitPagination;
 	@Autowired
-	private TecRemoteService tecService;
+	private AdviserService tecService;
 
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/{id}")
 	public String getTecById(@PathVariable(value = "id") Long articleId, Model model) {
-		model.addAttribute("tecRemote", tecService.findById(articleId));
-		return TECR_VIEW;
+		model.addAttribute("adviser", tecService.findById(articleId));
+		return ADV_VIEW;
 	}
 
 	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping
 	public ModelAndView getAllTec(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitPagination.initPaginationTecRemote(pageSize, page, TECR_PAGE_VIEW);
+		ModelAndView modelAndView = pageInitPagination.initPaginationAdviser(pageSize, page, ADV_PAGE_VIEW);
 
 		return modelAndView;
 	}
@@ -59,28 +59,28 @@ public class TecRemoteController {
 	public String newTec(Model model) {
 
 		// in case of redirection model will contain article
-		if (!model.containsAttribute("tecRemote")) {
-			model.addAttribute("tecRemote", new TecRemote());
+		if (!model.containsAttribute("adviser")) {
+			model.addAttribute("adviser", new Adviser());
 		}
-		return TECR_ADD_FORM_VIEW;
+		return ADV_ADD_FORM_VIEW;
 	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@PostMapping("/create")
-	public String createArticle(@Valid TecRemote article, BindingResult result, RedirectAttributes attr, Model model) {
+	public String createArticle(@Valid Adviser article, BindingResult result, RedirectAttributes attr, Model model) {
 
-		if (result.hasErrors() || tecService.TechnicianIndValid(article) == false) {
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.tecRemote", result);
-			attr.addFlashAttribute("tecRemote", article);
+		if (result.hasErrors() || tecService.AdviserIndValid(article) == false) {
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.adviser", result);
+			attr.addFlashAttribute("adviser", article);
 
-			attr.addFlashAttribute("error", "No se permite tecnicos" + " con el mismo nombre");
+			attr.addFlashAttribute("error", "No se permite asesores" + " con el mismo nombre");
 
-			return "redirect:/tecsremote/new";
+			return "redirect:/advisors/new";
 		}
-		TecRemote newArticle = tecService.create(article);
-		model.addAttribute("tecRemote", newArticle);
+		Adviser newArticle = tecService.create(article);
+		model.addAttribute("adviser", newArticle);
 
-		return "redirect:/tecsremote/" + newArticle.getId();
+		return "redirect:/advisors/" + newArticle.getId();
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -90,38 +90,38 @@ public class TecRemoteController {
 		 * in case of redirection from '/article/{id}/update' model will contain article
 		 * with field values
 		 */
-		if (!model.containsAttribute("tecRemote")) {
-			model.addAttribute("tecRemote", tecService.findById(articleId));
+		if (!model.containsAttribute("adviser")) {
+			model.addAttribute("adviser", tecService.findById(articleId));
 		}
-		return TECR_EDIT_FORM_VIEW;
+		return ADV_EDIT_FORM_VIEW;
 	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@PostMapping(path = "/{id}/update")
-	public String updateTec(@PathVariable(value = "id") Long technicianIndId, @Valid TecRemote technician,
+	public String updateTec(@PathVariable(value = "id") Long technicianIndId, @Valid Adviser technician,
 			BindingResult result, Model model, RedirectAttributes attr) {
 
-		if (result.hasErrors() || tecService.TechnicianIndValid(technician) == false) {
+		if (result.hasErrors() || tecService.AdviserIndValid(technician) == false) {
 
 			/// After the redirect: flash attributes pass attributes to the model
-			attr.addFlashAttribute("org.springframework.validation.BindingResult.tecRemote", result);
-			attr.addFlashAttribute("tecRemote", technician);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.adviser", result);
+			attr.addFlashAttribute("adviser", technician);
 
-			attr.addFlashAttribute("error", "No se permite tecnicos con el mismo email");
+			attr.addFlashAttribute("error", "No se permite asesores con el mismo email");
 
-			return "redirect:/tecsremote/" + technician.getId() + "/edit";
+			return "redirect:/advisors/" + technician.getId() + "/edit";
 		}
 
 		tecService.update(technicianIndId, technician);
-		model.addAttribute("tecRemote", tecService.findById(technicianIndId));
-		return "redirect:/tecsremote/" + technicianIndId;
+		model.addAttribute("adviser", tecService.findById(technicianIndId));
+		return "redirect:/advisors/" + technicianIndId;
 	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@GetMapping(value = "/{id}/delete")
 	public String deleteTec(@PathVariable("id") Long articleId) {
 		tecService.delete(articleId);
-		return "redirect:/tecsremote";
+		return "redirect:/advisors";
 	}
 
 }

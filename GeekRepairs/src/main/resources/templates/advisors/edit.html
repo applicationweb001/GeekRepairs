@@ -15,11 +15,11 @@
 				<div class="row">
 					<div class="col-md-8 offset-md-2 col-sm-12">
 						<div class="title">
-							<h2>Editar Tecnico Remoto</h2>
+							<h2>Editar Asesor de Ventas</h2>
 						</div>
 
-						<form th:object="${tecRemote}"
-							th:action="@{/tecsremote/{id}/update(id=${tecRemote.id})}"
+						<form th:object="${adviser}"
+							th:action="@{/advisors/{id}/update(id=${adviser.id})}"
 							th:method="post">
 
 							<div class="alert alert-danger" th:if="${error!=null}"
@@ -58,7 +58,7 @@
 									th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
 							</div>
 
-							<a th:href="@{'/tecsremote/'}" class="btn btn-primary">Regresar</a>
+							<a th:href="@{'/advisors/'}" class="btn btn-primary">Regresar</a>
 							<button type="submit" class="btn btn-success">Guardar</button>
 						</form>
 					</div>

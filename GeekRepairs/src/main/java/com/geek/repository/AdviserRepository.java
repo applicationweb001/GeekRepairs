@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.geek.model.TecRemote;
+import com.geek.model.Adviser;
 
 
-public interface TecRemoteRepository extends PagingAndSortingRepository<TecRemote,Long>{
+public interface AdviserRepository extends PagingAndSortingRepository<Adviser,Long>{
 
-	 @Query(value = "SELECT MAX(id) FROM TecRemote")
+	 @Query(value = "SELECT MAX(id) FROM Adviser")
 	    Long findTopByOrderByIdDesc();
 
 	    /**
@@ -22,9 +22,9 @@ public interface TecRemoteRepository extends PagingAndSortingRepository<TecRemot
 	     * @return          List of articles with the same title and author
 	     * 
 	     */
-	    @Query("SELECT a FROM TecRemote a WHERE a.name=:name")
-	    List<TecRemote> findByTechnicianIndName(@Param("name") String tecRemote);
-	    Page<TecRemote> findAll(Pageable pageable);
+	    @Query("SELECT a FROM Adviser a WHERE a.name=:name")
+	    List<Adviser> findByTechnicianIndName(@Param("name") String tecRemote);
+	    Page<Adviser> findAll(Pageable pageable);
 		
 	
 }

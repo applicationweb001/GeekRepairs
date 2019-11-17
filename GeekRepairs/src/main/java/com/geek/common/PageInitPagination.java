@@ -16,7 +16,7 @@ import com.geek.model.Product;
 import com.geek.model.Request;
 import com.geek.model.RequestDetail;
 import com.geek.model.Specialty;
-import com.geek.model.TecRemote;
+import com.geek.model.Adviser;
 import com.geek.model.TechnicianInd;
 import com.geek.model.Ticket;
 import com.geek.service.ArticleService;
@@ -26,7 +26,7 @@ import com.geek.service.ProblemService;
 import com.geek.service.ProductService;
 import com.geek.service.RequestService;
 import com.geek.service.SpecialtyService;
-import com.geek.service.TecRemoteService;
+import com.geek.service.AdviserService;
 import com.geek.service.TechnicianIndService;
 import com.geek.service.TicketService;
 
@@ -59,7 +59,7 @@ public class PageInitPagination {
 	
 	
 	@Autowired
-	private TecRemoteService tecService;
+	private AdviserService tecService;
 	
 	@Autowired
 	private ProblemService probService;
@@ -253,7 +253,7 @@ public class PageInitPagination {
 	
 	
 	
-	public  ModelAndView initPaginationTecRemote(Optional<Integer> pageSize, Optional<Integer> page, String url) {
+	public  ModelAndView initPaginationAdviser(Optional<Integer> pageSize, Optional<Integer> page, String url) {
 		ModelAndView initModelView = new ModelAndView(url);
 	
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
@@ -261,7 +261,7 @@ public class PageInitPagination {
 	
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<TecRemote> tecList = tecService.findAll(PageRequest.of(evalPage, evalPageSize));
+		Page<Adviser> tecList = tecService.findAll(PageRequest.of(evalPage, evalPageSize));
 		PagerModel pager = new PagerModel(tecList.getTotalPages(), tecList.getNumber(), BUTTONS_TO_SHOW);
 
 		initModelView.addObject("tecList", tecList);
