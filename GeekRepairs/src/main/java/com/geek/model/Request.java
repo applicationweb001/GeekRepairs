@@ -3,7 +3,9 @@ package com.geek.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -28,52 +32,44 @@ public class Request extends DateAudit{
 	@Column(name = "request_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-
-	@NotEmpty(message = "Please enter a quantity")
-	@Column(name="quantity")
-	private String quantity;
 	
-
-	@NotEmpty(message = "Please enter a price")
-	@Column(name ="total_price")
-	private String price;
-
+	@OneToOne
+	@JoinColumn(name = "ticket_id")
+	public Ticket ticketId;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="Request_Product",joinColumns= {@JoinColumn(name="request_id")}) // aqui se agrego
-	@NotEmpty(message = "Please enter a Product")
-	private List<Product> products = new ArrayList<>();
+	public Ticket getTicketid() {
+		return ticketId;
+	}
 
+
+	public void setTicketid(Ticket ticketid) {
+		this.ticketId = ticketid;
+	}
+
+	@OneToMany(fetch= FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "requestdetail_id")
+	private List<RequestDetail> requestDetail;
 	
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
+	
+	
+	
 	public Request() {
+		requestDetail = new ArrayList<>();
+		
     	this.setCreatedAt(new Date());
         this.setUpdatedAt(new Date());
     }
 
-    public Request(@NotEmpty String quantity,@NotEmpty String price) {
-        this.quantity = quantity;
-        this.price = price;
-       
-        
-    }
+
+	public List<RequestDetail> getRequestDetail() {
+		return requestDetail;
+	}
+
+
+
+	public void setRequestDetail(List<RequestDetail> requestDetail) {
+		this.requestDetail = requestDetail;
+	}
 
 	public Long getId() {
 		return id;
@@ -84,16 +80,16 @@ public class Request extends DateAudit{
 	}
 
 
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public void addRequestDetail(RequestDetail item) {
+		this.requestDetail.add(item);
+	}
+	
+	public double getTotal() {
+		return requestDetail.stream().collect(Collectors.summingDouble(RequestDetail::calculateAmount));
 	}
 	
 	

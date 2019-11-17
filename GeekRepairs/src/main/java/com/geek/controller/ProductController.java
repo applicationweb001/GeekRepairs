@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +31,7 @@ import com.geek.service.ProductService;
 
 @Controller
 @RequestMapping("/products")
+@SessionAttributes("product")
 public class ProductController {
 	protected static final String PRODUCT_VIEW = "products/showProduct"; // view template for single article
 	protected static final String PRODUCT_ADD_FORM_VIEW = "products/newProduct"; // form for new article
@@ -141,4 +144,24 @@ public class ProductController {
 		productService.delete(productId);
 		return "redirect:/products";
 	}
+	
+	@Secured({"ROLE_ADMIN"})
+	@GetMapping(value = "/list/{name}",produces = { "application/json" })
+	public @ResponseBody List<Product> fetchProducts(@PathVariable String name,Model model){
+		List<Product> products = null;
+		try {
+			products = productService.fetchProductByName(name);
+			} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return products;
+			
+			
+		}	
+		
+	
+	
+	
+	
+	
 }

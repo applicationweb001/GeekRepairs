@@ -10,7 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.geek.exception.ResourceNotFoundException;
+import com.geek.model.Product;
 import com.geek.model.Request;
+import com.geek.model.RequestDetail;
 import com.geek.repository.RequestRepository;
 import com.geek.service.RequestService;
 
@@ -37,9 +39,7 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public Request update(Long id, Request objectupdate) {
 		Request request = findById(id);
-		request.setPrice(objectupdate.getPrice());
-		request.setQuantity(objectupdate.getQuantity());
-		request.setProducts(objectupdate.getProducts());
+		
 		requestRepository.save(request);	
 		return request;
 	}
@@ -76,6 +76,7 @@ public class RequestServiceImpl implements RequestService{
 	public Page<Request> findAll(Pageable pageable) {
 		 return requestRepository.findAll(pageable);
 	}
+	
 
 	@Override
 	public boolean RequestValid(Request request) {
@@ -84,7 +85,15 @@ public class RequestServiceImpl implements RequestService{
                 .iterator().forEachRemaining(requests::add);
         if (!requests.isEmpty()) { return false;}
         else {return true;}
+	} 
+
+	@Override
+	public Optional<Request> fetchByRequestIdWithRequestDetailWithProduct(Long id) {
+		// TODO Auto-generated method stub
+		return requestRepository.fetchByRequestIdWithRequestDetailWithProduct(id);
 	}
+
+
 
 
 	

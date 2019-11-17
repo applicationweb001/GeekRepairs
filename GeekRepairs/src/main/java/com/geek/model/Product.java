@@ -29,7 +29,7 @@ public class Product extends DateAudit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "Please enter a product")
+	@NotEmpty(message = "Por favor ingrese el nombre del producto")
 	@Column(name = "name")
 	private String name;
 
@@ -38,16 +38,15 @@ public class Product extends DateAudit {
 	private Category category;
 	
 	
-	@NotEmpty(message = "Please enter a price")
-	@Column(name = "unite_price")
-	private String unitPrice;
+	@Column(name = "unit_price")
+	private double unitPrice;
 
 	public Product() {
 		this.setCreatedAt(new Date());
 		this.setUpdatedAt(new Date());
 	}
 
-	public Product(@NotEmpty String name, @NotEmpty String unitPrice,Category category) {
+	public Product(@NotEmpty String name, @NotEmpty double unitPrice,Category category) {
 		this.name = name;
 		this.unitPrice = unitPrice;
 		this.category=category;
@@ -72,11 +71,11 @@ public class Product extends DateAudit {
 		this.name = name;
 	}
 
-	public String getUnitPrice() {
+	public double getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(String unitPrice) {
+	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 

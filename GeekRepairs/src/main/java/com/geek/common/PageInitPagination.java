@@ -14,6 +14,7 @@ import com.geek.model.Client;
 import com.geek.model.Problem;
 import com.geek.model.Product;
 import com.geek.model.Request;
+import com.geek.model.RequestDetail;
 import com.geek.model.Specialty;
 import com.geek.model.TecRemote;
 import com.geek.model.TechnicianInd;
@@ -179,6 +180,7 @@ public class PageInitPagination {
 
 		return initModelView;
 	}
+	
 	
 	public  ModelAndView initPaginationProduct(Optional<Integer> pageSize, Optional<Integer> page, String url) {
 		ModelAndView initModelView = new ModelAndView(url);

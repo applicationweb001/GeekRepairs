@@ -22,5 +22,11 @@ public interface ProductRepository extends PagingAndSortingRepository<Product,Lo
     
     //category name must be unique
     @Query("SELECT a FROM Product a WHERE a.name=:name")
-    List<Product> findByProductName(@Param("name") String product);
+    List<Product> findByName(String name);
+    
+    @Query("SELECT p from Product p WHERE p.name LIKE %?1%")
+    List<Product> fetchProductByName(String name); 
+    
+    
+    
 }

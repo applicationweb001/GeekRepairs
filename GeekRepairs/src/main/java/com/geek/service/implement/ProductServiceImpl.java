@@ -83,10 +83,23 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public boolean ProductValid(Product product) {
 		List<Product> products= new ArrayList<>();
-		productRepository.findByProductName(product.getName())
+		productRepository.findByName(product.getName())
                 .iterator().forEachRemaining(products::add);
         if (!products.isEmpty()) { return false;}
         else {return true;}
 	}
+
+	@Override
+	public List<Product> findByName(String name) {
+		
+		return productRepository.findByName(name);
+	}
+
+	@Override
+	public List<Product> fetchProductByName(String name) {
+		return productRepository.fetchProductByName(name);
+	}
+	
+	
 
 }
