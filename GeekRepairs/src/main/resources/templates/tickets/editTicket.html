@@ -40,6 +40,8 @@
 											class="form-control validate"> <label
 											for="ticketId">Ticket Id</label>
 									</div>
+									
+									
 									<!-- datos claves -->
 									
 									<div class="form-group">
@@ -121,8 +123,15 @@
 									<button type="submit" class="btn btn-dark">Save</button>
 									<a class="btn btn-primary" th:href="@{'/tickets'}">Cancel</a>
 									<a class="btn btn-primary" th:href="@{/requests/{id}/new(id=${ticket.id})}">Cancel</a>
+									<a class="btn btn-primary" th:href="@{/tickets/{id}/search(id=${ticket.id})}">Asignando Tecnicos</a>
 
 								</form>
+								
+								<div class="form-group invisible">
+									<input type="text" class="form-control" id="specialty"
+										name="specialty" placeholder="ingrese nombre de una especialidad">
+									</div>
+								
 							</div>
 						</div>
 					</div>

@@ -43,6 +43,5 @@ public class TicketTechnician extends DateAudit {
 	
 	
 	
-	
-	
+		
 }

@@ -3,6 +3,7 @@ package com.geek.service.implement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.geek.exception.ResourceNotFoundException;
+import com.geek.model.Specialty;
 import com.geek.model.TechnicianInd;
 import com.geek.repository.TechnicianIndRepository;
 import com.geek.service.TechnicianIndService;
@@ -89,5 +91,15 @@ public class TechnicianIndServiceImpl implements TechnicianIndService {
         else {return true;}
 	}
 
+	@Override
+	public List<TechnicianInd> findBySpecialtyName(String name) {
+		
+		//List<TechnicianInd> list = technicianIndRepository.findAllSpecialtyNameWithPagination()
+			//    .stream()
+			  //  .filter(x -> x.equals(name))
+			    //.collect(Collectors.toList());
+		
+		return technicianIndRepository.findAllSpecialtyNameWithPagination(name);
+	}
 	
 }

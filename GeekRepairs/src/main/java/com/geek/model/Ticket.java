@@ -61,8 +61,8 @@ public class Ticket extends DateAudit {
 	private String address;
 	
 	@OneToMany(fetch= FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "ticket_fk_id")
-	private List<TicketTechnician> ticketTechnician;
+	@JoinColumn(name = "ticket_id")
+	private List<TicketTechnician> ticketTechnicians;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="ticket_problems",joinColumns= {@JoinColumn(name="problem_id")}) // aqui se agrego
@@ -157,4 +157,8 @@ public class Ticket extends DateAudit {
 		this.address = address;
 	}
 
+	public void addTicketTech(TicketTechnician item) {
+		this.ticketTechnicians.add(item);
+	}
+	
 }

@@ -35,11 +35,41 @@ Insert into categories(name,created_at,updated_at) values ('CAT5','2018-12-28 00
 Insert into Clients(name,surname,email,phone,address,created_at,updated_at) values ('Joseph','Joestar','nose','123','Lima','2018-12-28 00:27:24', '2019-12-28 00:27:24');
 
 Insert into problems(name,description,created_at,updated_at) values ('nose','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose1','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose2','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose3','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose4','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose5','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into problems(name,description,created_at,updated_at) values ('nose6','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
 
 Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','ssd',185,1);
 Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','pent drive',10,1);
 Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','mouse',55,1);
 
 Insert into specialties(name,description,created_at,updated_at) values ('SPE1','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into specialties(name,description,created_at,updated_at) values ('SPE2','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into specialties(name,description,created_at,updated_at) values ('SPE3','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24');
+Insert into specialties(name,description,created_at,updated_at) values ('SPE4','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24');
+
+INSERT INTO technicians_ind( created_at, updated_at, cost, name, status, telephone)VALUES ( '2018-12-28 00:27:24','2019-12-28 00:27:24', '25', 'Perez', 'Disponible', '944545646');
+INSERT INTO technicians_ind( created_at, updated_at, cost, name, status, telephone)VALUES ( '2018-12-28 00:27:24','2019-12-28 00:27:24', '25', 'Perez1', 'Disponible', '944545646');
+INSERT INTO technicians_ind(created_at, updated_at, cost, name, status, telephone)VALUES ( '2018-12-28 00:27:24','2019-12-28 00:27:24', '25', 'Perez2', 'Disponible', '944545646');
+
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id)VALUES (1,1 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id)VALUES (1,2 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id)VALUES (1,3 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id) VALUES (2,2 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id) VALUES (2,3 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id) VALUES (3,3 );
+INSERT INTO technician_ind_specialty(technician_ind_id, specialties_specialty_id) VALUES (3,4 );
+
+
+		
+	
+	
+		
+
+	
+	
 
 

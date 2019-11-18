@@ -1,12 +1,13 @@
 package com.geek.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-
+import com.geek.model.Request;
 import com.geek.model.Ticket;
 
 public interface TicketRepository extends PagingAndSortingRepository<Ticket,Long>{
@@ -21,7 +22,13 @@ public interface TicketRepository extends PagingAndSortingRepository<Ticket,Long
      * @return          List of articles with the same category
      */
     
-    //category name must be unique
     @Query("SELECT a FROM Ticket a WHERE a.id=:id")
     List<Ticket> findByTicketId(@Param("id") Long ticket);
+
+    @Query("SELECT t FROM Ticket t join fetch t.ticketTechnicians tt join fetch "
+    		+ "tt.technician WHERE t.id=:id")
+    Optional<Request> fetchByTicketIdWithTicketTechnicianWithTechnincian(Long id);
+  
+    
+    
 }

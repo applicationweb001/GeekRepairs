@@ -88,4 +88,10 @@ public class CategoryServiceImpl implements CategoryService{
 		
 	}
 
+	@Override
+	public Page<Category> findByName(Pageable pageable, String name) {
+		// TODO Auto-generated method stub
+		return categoryRepository.findByName(pageable, name);
+	}
+
 }

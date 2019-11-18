@@ -35,12 +35,5 @@ public interface RequestRepository extends PagingAndSortingRepository<Request, L
     @Query("SELECT r FROM Request r join fetch r.requestDetail rd join fetch rd.productid WHERE r.id=:id")
     Optional<Request> fetchByRequestIdWithRequestDetailWithProduct(Long id);
     
-    
-    
-    
-    
-    
-    
-    
-    
+     
 }

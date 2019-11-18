@@ -5,6 +5,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.geek.common.PageInitPagination;
 import com.geek.model.Category;
 import com.geek.service.CategoryService;
+import com.geek.paginitation.PageRender;
 
 @Controller
 @RequestMapping("/categories")
@@ -48,12 +52,26 @@ public class CategoryController {
 	
 	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping
-	public ModelAndView getAllCategories(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page) {
-		ModelAndView modelAndView = pageInitiPagination.initPaginationCategory(pageSize, page, CATEGORY_PAGE_VIEW);
-		return modelAndView;
+	public String getAllCategories
+	(@RequestParam(name = "page", defaultValue = "0")Optional<Integer> page
+			, Model model) {
+		
+		try {
+			Pageable pageRequest = PageRequest.of(page.get(), 5);
+			Page<Category> categories = categoryService.findAll(pageRequest);
+			PageRender<Category> pageRender = new PageRender<Category>("/categories/", categories);			
+			
+			model.addAttribute("categoriesList", categories);
+			model.addAttribute("page", pageRender);
+
+		} catch (Exception e) {
+
+		}
+		
+		return CATEGORY_PAGE_VIEW;
 
 	}
+	
 	
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/new")

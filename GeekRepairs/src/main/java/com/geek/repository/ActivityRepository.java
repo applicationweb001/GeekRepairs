@@ -24,6 +24,7 @@ public interface ActivityRepository extends PagingAndSortingRepository<Activity,
 	     */
 	    @Query("SELECT a FROM Activity a WHERE a.name=:name")
 	    List<Activity> findByActivityIndName(@Param("name") String act);
+	    
 	    Page<Activity> findAll(Pageable pageable);
 		
 	

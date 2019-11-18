@@ -23,9 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
 import com.geek.model.Category;
-import com.geek.model.Client;
+
 import com.geek.model.Product;
-import com.geek.model.Ticket;
+
 import com.geek.service.CategoryService;
 import com.geek.service.ProductService;
 
@@ -67,12 +67,17 @@ public class ProductController {
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 
+		
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", new Product());
-			List<Category>categories  = categoryService.getAll(); //se agrego esto
-			model.addAttribute("categories",categories); // y esto
+		
 		}
+		
+		List<Category>categories  = categoryService.getAll(); //se agrego esto
+		model.addAttribute("categories",categories); // y esto
+
+	
 		return PRODUCT_ADD_FORM_VIEW;
 	}
 

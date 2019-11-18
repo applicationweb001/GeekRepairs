@@ -48,14 +48,15 @@
 										</tr>
 									</tbody>
 								</table>
+								
+										<nav th:replace="fragments/pagination1 :: paginator"></nav>
+								
 							</div>
 						</div>
 					</div>
 					<br> &nbsp;&nbsp;&nbsp; <br>
 
-					<div class="container">
-						<th:block th:include="pagination/paginationCategory"></th:block>
-					</div>
+				
 
 				</div>
 			</div>
@@ -64,6 +65,8 @@
 		</div> 	<!-- esto -->
 	</div>	<!-- esto -->
 	<th:block th:include="fragments/scripts"></th:block>
+	
+	
 </body>
 
 </html>

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.geek.model.Product;
 
 public interface ProductRepository extends PagingAndSortingRepository<Product,Long>{
+	
 	/**
      * @return newest categoryId
      */

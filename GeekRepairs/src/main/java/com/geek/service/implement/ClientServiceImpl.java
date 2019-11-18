@@ -20,16 +20,13 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	private ClientRepository clientRepository;
 		
-
 	@Override
 	public List<Client> getAll() {
-		List<Client> clients= new ArrayList();
+		List<Client> clients= new ArrayList<Client>();
 		clientRepository.findAll().iterator().forEachRemaining(clients::add);
 		return clients;
 	}
 	
-	
-
 	@Override
 	public Client create(Client object) {
 		Client newclient;
