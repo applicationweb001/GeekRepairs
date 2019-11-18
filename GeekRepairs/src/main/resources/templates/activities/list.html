@@ -25,12 +25,12 @@
 				<table class="table table-responsive highlight">
 					<thead>
 						<tr>
-						
+							<th>Id</th>
 							<th>Nombre</th>
                             <th>Descripcion</th>
-                            <th>Estado</th>
 							<th>Fecha de Inicio</th>
 							<th>Fecha de Fin</th>
+							<th>Estado</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -42,7 +42,6 @@
 							<td th:text="${activity.id}"></td>
 							<td th:text="${activity.name}"></td>
 							<td th:text="${activity.description}"></td>
-							<td th:text="${activity.state}"></td>
 							<td th:text="${activity.startDate}"></td>
 						<td th:text="${activity.endingDate}"></td>
 						<td th:text="${activity.state}"></td>

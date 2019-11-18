@@ -43,6 +43,36 @@
 								<span class="text-danger errorMsg"
 									th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
 							</div>
+							
+							<div class="form-group">
+										<label for="fecha">Fecha de Inicio</label> <input
+											type="date" class="form-control" th:field="*{startDate}"
+											id="fecha" /> 
+											<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('startDate')}"
+											th:errors="*{startDate}"></span>
+									</div>
+									
+							<div class="form-group">
+										<label for="fecha1">Fecha de Fin</label> <input
+											type="date" class="form-control" th:field="*{endingDate}"
+											id="fecha1" /> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('endingDate')}"
+											th:errors="*{endingDate}"></span>
+							</div>
+							
+							<div class="form-group">
+
+										<label for="state">Estado </label> <select name="state"
+											th:field="*{state}" id="state" class="form-control"
+											required>
+											<option value="En_Proceso">En Proceso</option>
+											<option value="Terminado" selected>Terminado</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+									</div>
+
+							
 
 							<a th:href="@{'/activities/'}" class="btn btn-primary">Regresar</a>
 							<button type="submit" class="btn btn-success">Guardar</button>
