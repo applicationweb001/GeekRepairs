@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+<div class="d-flex" id="wrapper">	<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>	<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">	<!-- esto -->
+	<th:block th:include="fragments/navbarTransparent"></th:block>
+
+	<div class="main">
+		<th:block th:include="fragments/navbarPrimary"></th:block>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+
+						<div class="title">
+							<h2>Lista de Actividades Registradas</h2>
+						</div>
+
+
+				<table class="table table-responsive highlight">
+					<thead>
+						<tr>
+						
+							<th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Estado</th>
+							<th>Fecha de Inicio</th>
+							<th>Fecha de Fin</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					
+						
+						<tr th:each="activity : ${actList}">
+
+							<td th:text="${activity.id}"></td>
+							<td th:text="${activity.name}"></td>
+							<td th:text="${activity.description}"></td>
+							<td th:text="${activity.state}"></td>
+							<td th:text="${activity.startDate}"></td>
+						<td th:text="${activity.endingDate}"></td>
+						<td th:text="${activity.state}"></td>
+						
+									
+									
+							<td><a
+										th:href="@{/activities/{id}(id=${activity.id})}"><i
+											class="fab fa-readme"></i></a></td>
+									<td><a
+										th:href="@{/activities/{id}/edit(id=${activity.id})}"><i
+											class="far fa-edit"></i></a></td>
+									<td><a
+										th:href="@{/activities/{id}/delete(id=${activity.id})}"><i
+											class="fas fa-trash-alt"></i></a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="container">
+			<th:block th:include="pagination/paginationActivity"></th:block>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+		</div>
+	</div>
+
+	<th:block th:include="fragments/footer"></th:block>
+</div>
+</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

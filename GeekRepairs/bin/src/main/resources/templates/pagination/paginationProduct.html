@@ -1,0 +1,49 @@
+<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+						<!--include if you want to select pagesize: 5,10 -->
+						<!--
+                    <div>
+                        <select id="pageSizeSelect">
+                            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                    th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                        </select>
+                    </div>-->
+
+
+						<div th:if="${productsList.totalPages != 1}" class="section">
+							<ul class="pagination pagination-primary">
+								<li class="page-item"
+									th:class="${productsList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/products/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+								<li class="page-item"
+									th:class="${productsList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/products/(pageSize=${selectedPageSize}, page=${productsList.number})}">â†�</a>
+								</li>
+								<li
+									th:class="${productsList.number == (page - 1)} ? 'active page-item'"
+									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+									<a class="page-link"
+									th:href="@{/products/(pageSize=${selectedPageSize}, page=${page})}"
+									th:text="${page}"></a>
+								</li>
+								<li class="page-item"
+									th:class="${productsList.number + 1 == productsList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/products/(pageSize=${selectedPageSize}, page=${productsList.number + 2})}">â†’</a>
+								</li>
+								<li class="page-item"
+									th:class="${productsList.number + 1 == productsList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/products/(pageSize=${selectedPageSize}, page=${productsList.totalPages})}">Â»</a>
+								</li>
+							</ul>
+						</div>
+
+
+
+					</div>
+				</div>
+

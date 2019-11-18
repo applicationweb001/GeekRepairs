@@ -1,21 +1,25 @@
 <footer class="footer" data-background-color="green">
-    <div class="container">
-        <nav class="float-left">
-            <ul>
-                <li>
-                    <a th:href="@{https://www.geeksonsite.com/}" target="_blank">
-                        Geek On Site
-                    </a>
-                </li>
-                
-            </ul>
-        </nav>
-        <div class="copyright float-right">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a th:href="@{https://github.com/applicationweb001/GeekRepair}" target="_blank">Team Geek</a>.
-        </div>
-    </div>
+	<div class="container">
+		<nav class="float-left">
+			<ul>
+				<li><a th:href="@{https://www.geeksonsite.com/}"
+					target="_blank"> Geek On Site </a></li>
+
+			</ul>
+		</nav>
+		<div class="copyright float-right">
+			&copy;
+			<script>
+				document.write(new Date().getFullYear())
+			</script>
+			, made with <i class="material-icons">favorite</i> by <a
+				th:href="@{https://github.com/applicationweb001/GeekRepair}"
+				target="_blank">Team Geek</a>.
+		</div>
+	</div>
+
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery-ui.min.js}"></script>
 </footer>

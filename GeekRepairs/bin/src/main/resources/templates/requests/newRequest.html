@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+
+<body class="index-page sidebar-collapse">
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
+			<th:block th:include="fragments/navbarTransparent"></th:block>
+
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<form
+							th:action="@{/requests/{id}/create(id=${request.ticketid.id})}"
+							th:object="${request}" method="post">
+							<div class="card">
+								<div class="card-header text.-white bg-primary">Nueva
+									Solicitud</div>
+								<div class="card-body">
+
+									<div class="form-group row">
+										<label for="ticketid" class="col-sm-2 col-form-label">Ticket</label>
+										<div class="col-sm-6">
+											<input type="text" readonly class="form-control-plaintext"
+												id="ticketid" th:value="${request.ticketid.id}">
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="productname" class="col-sm-2 col-form-label">Producto</label>
+										<div class="col-sm-6">
+											<input type="text" name="productname" class="form-control"
+												id="productname" placeholder="Producto a buscar">
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="card">
+								<div class="card-header text-white bg-primary">Detalle</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="loadProducts" class="table table-striped">
+											<thead class="bg-primary text-white">
+												<tr>
+													<th>Nombre</th>
+													<th>Precio</th>
+													<th>Cantidad</th>
+													<th>Total</th>
+													<th>Eliminar</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+
+									<table
+										th:replace="requests/template-requestdetail::detailRequest"></table>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<h5 id="total">
+										Total <span class="badge badge-primary" id="gran_total">0</span>
+									</h5>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<input type="submit" value="Registrar" class="btn btn-primary" />
+								</div>
+							</div>
+
+						</form>
+					</div>
+
+
+					<th:block th:include="fragments/footer"></th:block>
+
+					<script th:replace="requests/js/autocomplete-products::javascript"></script>
+
+
+				</div>
+				<!-- esto -->
+			</div>
+			<!-- esto -->
+		</div>
+	</div>
+
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

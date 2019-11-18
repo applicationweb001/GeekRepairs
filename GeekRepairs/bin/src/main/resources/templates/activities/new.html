@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body  class="index-page sidebar-collapse">
+<div class="d-flex" id="wrapper">	<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>	<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">	<!-- esto -->
+	<th:block th:include="fragments/navbarTransparent"></th:block>
+
+	<div class="main">
+		<th:block th:include="fragments/navbarPrimary"></th:block>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+						<div class="title">
+							<h2>Nueva Actividad</h2>
+						</div>
+
+				<form th:object="${activity}" th:action="@{/activities/create}"
+					th:method="post">
+				
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+							<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+				</div>
+
+					<div class="form-group">
+								<input th:field="*{name}" id="name" type="text"
+									class="form-control validate"> <label for="name">Nombre</label>
+									<span class="text-danger errorMsg" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+									</span>	
+					</div>
+					
+					<div class="form-group">
+								<input th:field="*{description}" id="description" type="text"
+									class="form-control validate"> <label for="description">Descripcion</label>
+									<span class="text-danger errorMsg" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+									</span>	
+					</div>		
+				
+				<div class="form-group">
+										<label for="startDate">Fecha de Inicio</label> <input
+											type="date" class="form-control" th:field="*{startDate}"
+											id="startDate" />
+											<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
+									</div>
+									
+									<div class="form-group">
+										<label for="endingDate">Fecha de Fin</label> <input
+											type="date" class="form-control" th:field="*{endingDate}"
+											id="endingDate" />
+											<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('endingDate')}" th:errors="*{endingDate}"></span>
+									</div>
+									
+									<div class="form-group">
+
+										<label for="state">Estado</label> <select
+											name="state" id="state" class="form-control"
+											required>
+											<option value="En_Proceso">En Proceso</option>
+											<option value="Terminado" selected>Terminado</option>
+										</select>
+										<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+									</div>
+							
+							
+					<a th:href="@{'/activities/'}" class="btn btn-primary">Cancelar</a>
+					<button type="submit" class="btn btn-success">Guardar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	</div>
+	
+	<th:block th:include="fragments/footer"></th:block>
+</div>
+</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+
+		var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = (day) + "/" + +(month) + "/" + +now.getFullYear();
+		$("#fecha").val(today);
+	});
+</script>
+
+</html>

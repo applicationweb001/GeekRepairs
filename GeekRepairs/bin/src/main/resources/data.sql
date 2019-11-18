@@ -23,7 +23,6 @@ On April 19, 2017, React 360 V1.0.0 was released to the public.[13] This allowed
 INSERT INTO  users(enabled,password,user_name) VALUES(true,'$2a$10$sr2ZuTYlZ.LsliI6sv.HqeH39WsA.gz9Fdr.S0CyCBByyPQ8TObvS','hampcode');
 INSERT INTO  users(enabled,password,user_name) VALUES(true,'$2a$10$ZoqMrCUHNN8lE2g1zssyuucNhExlYwN06kM/Jo6vEBhyTQduQ7iCy','usercode');
 
-
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_ADMIN',1);
 INSERT INTO authorities(authority,user_id) VALUES('ROLE_USER',2);
 
@@ -32,4 +31,15 @@ Insert into categories(name,created_at,updated_at) values ('CAT2','2018-12-28 00
 Insert into categories(name,created_at,updated_at) values ('CAT3','2018-12-28 00:27:24', '2019-12-28 00:27:24');
 Insert into categories(name,created_at,updated_at) values ('CAT4','2018-12-28 00:27:24', '2019-12-28 00:27:24');
 Insert into categories(name,created_at,updated_at) values ('CAT5','2018-12-28 00:27:24', '2019-12-28 00:27:24');
+
+Insert into Clients(name,surname,email,phone,address,created_at,updated_at) values ('Joseph','Joestar','nose','123','Lima','2018-12-28 00:27:24', '2019-12-28 00:27:24');
+
+Insert into problems(name,description,created_at,updated_at) values ('nose','nose','2018-12-28 00:27:24','2019-12-28 00:27:24');
+
+Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','ssd',185,1);
+Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','pent drive',10,1);
+Insert into products(created_at,updated_at,name,unit_price,category_id) values ('2018-12-28 00:27:24','2019-12-28 00:27:24','mouse',55,1);
+
+Insert into specialties(name,description,created_at,updated_at) values ('SPE1','DES1','2018-12-28 00:27:24','2019-12-28 00:27:24');
+
 

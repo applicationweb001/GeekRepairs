@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
+			<th:block th:include="fragments/navbarTransparent"></th:block>
+
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12">
+
+								<div class="title">
+									<h2>Table with Pagination</h2>
+								</div>
+
+								<table class="table table-responsive highlight">
+									<thead>
+										<tr>
+											<th>ID Ticket</th>
+											<th>Cliente</th>
+											<th>Fecha de Servicio</th>
+											<th>Fecha de Atencion</th>
+											<th>Estado</th>
+											
+
+											<th></th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="ticket : ${ticketsList}">
+											<td th:text="${ticket.id}"></td>
+											<td th:text="${ticket.client.name}"></td>
+
+											<td th:text="${#dates.format(ticket.dateAttention, 'dd-MMM-yyyy')}"></td>
+
+											<td th:text="${ticket.dateService}"></td>
+											<td th:text="${ticket.status}"></td>
+											
+
+											<td
+												th:text="${#dates.format(ticket.updatedAt, 'dd-MMM-yyyy')}"></td>
+
+											<td><a th:href="@{/tickets/{id}(id=${ticket.id})}"><i
+													class="fab fa-readme"></i></a></td>
+											<td><a th:href="@{/tickets/{id}/edit(id=${ticket.id})}"><i
+													class="far fa-edit"></i></a></td>
+											<td><a
+												th:href="@{/tickets/{id}/delete(id=${ticket.id})}"><i
+													class="fas fa-trash-alt"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<br> &nbsp;&nbsp;&nbsp; <br>
+
+					<div class="container">
+						<th:block th:include="pagination/paginationticket"></th:block>
+					</div>
+
+				</div>
+			</div>
+
+			<th:block th:include="fragments/footer"></th:block>
+		</div>
+		<!-- esto -->
+	</div>
+	<!-- esto -->
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

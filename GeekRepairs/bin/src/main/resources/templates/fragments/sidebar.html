@@ -1,0 +1,72 @@
+<!-- Sidebar -->
+<div class="bg-light border-right" id="sidebar-wrapper">
+	<div class="sidebar-heading">SideBar Demo</div>
+	<div class="list-group list-group-flush">
+
+		<a th:href="@{/clients/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>
+			New Client
+		</a> <a th:href="@{/clients}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Clients
+		</a> <a th:href="@{/tickets/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Ticket
+		</a> <a th:href="@{/tickets}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Tickets
+		</a><a th:href="@{/categories/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Category
+		</a> <a th:href="@{/categories}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Categories
+		</a> <a th:href="@{/specialties/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Specialty
+		</a> <a th:href="@{/specialties}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Specialties
+		</a> <a th:href="@{/techniciansInd/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			TechnicianInd
+		</a> <a th:href="@{/techniciansInd}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All technicianInd
+		</a> <a th:href="@{/requests/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Request
+		</a> <a th:href="@{/requests}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Requests
+		</a> <a th:href="@{/products/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Product
+		</a> <a th:href="@{/products}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Products
+		</a> <a th:href="@{/advisors/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Adviser
+		</a> <a th:href="@{/advisors}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Advisors
+		</a> <a th:href="@{/problems/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Problem
+		</a> <a th:href="@{/problems}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Problems
+		</a>
+		<a th:href="@{/activities/new}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="fas fa-plus"></i>New
+			Activity
+		</a>
+ 		<a th:href="@{/activities}" class="nav-link"
+			sec:authorize="isAuthenticated()"> <i class="material-icons">apps</i>
+			All Activities
+		</a>
+
+	</div>
+</div>
+<!-- /#sidebar-wrapper -->

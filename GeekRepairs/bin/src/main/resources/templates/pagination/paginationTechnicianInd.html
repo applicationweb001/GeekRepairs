@@ -1,0 +1,48 @@
+<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+						<!--include if you want to select pagesize: 5,10 -->
+						<!--
+                    <div>
+                        <select id="pageSizeSelect">
+                            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                    th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                        </select>
+                    </div>-->
+
+
+						<div th:if="${techniciansIndList.totalPages != 1}" class="section">
+							<ul class="pagination pagination-primary">
+								<li class="page-item"
+									th:class="${techniciansIndList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/techniciansInd/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+								<li class="page-item"
+									th:class="${techniciansIndList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/techniciansInd/(pageSize=${selectedPageSize}, page=${techniciansIndList.number})}">â†�</a>
+								</li>
+								<li
+									th:class="${techniciansIndList == (page - 1)} ? 'active page-item'"
+									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+									<a class="page-link"
+									th:href="@{/techniciansInd/(pageSize=${selectedPageSize}, page=${page})}"
+									th:text="${page}"></a>
+								</li>
+								<li class="page-item"
+									th:class="${techniciansIndList.number + 1 == techniciansIndList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/techniciansInd/(pageSize=${selectedPageSize}, page=${techniciansIndList.number + 2})}">â†’</a>
+								</li>
+								<li class="page-item"
+									th:class="${techniciansIndList.number + 1 == techniciansIndList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/techniciansInd/(pageSize=${selectedPageSize}, page=${techniciansIndList.totalPages})}">Â»</a>
+								</li>
+							</ul>
+						</div>
+
+
+
+					</div>
+				</div>

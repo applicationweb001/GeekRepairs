@@ -1,0 +1,39 @@
+<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+			
+
+						<div th:if="${tecList.totalPages != 1}" class="section">
+							<ul class="pagination pagination-primary">
+								<li class="page-item"
+									th:class="${tecList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+								<li class="page-item"
+									th:class="${tecList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number})}">â†�</a>
+								</li>
+								<li
+									th:class="${tecList == (page - 1)} ? 'active page-item'"
+									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+									<a class="page-link"
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${page})}"
+									th:text="${page}"></a>
+								</li>
+								<li class="page-item"
+									th:class="${tecList.number + 1 == tecList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number + 2})}">Ã¢â€ â€™</a>
+								</li>
+								<li class="page-item"
+									th:class="${tecList.number + 1 == tecList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.totalPages})}">Ã‚Â»</a>
+								</li>
+							</ul>
+						</div>
+
+
+
+					</div>
+				</div>

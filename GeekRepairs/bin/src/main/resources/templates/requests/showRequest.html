@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
+			<th:block th:include="fragments/navbarTransparent"></th:block>
+
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12">
+								<div class="title">
+								
+								<h3>Ticket:</h3>
+								<td th:text="${request.ticketId.id}"></td>
+										
+										
+								</div>
+								
+								<th>Id de Solicitud:</th>
+								<td th:text="${request.id}"></td>
+
+								<table th:if="${not #lists.isEmpty(request.requestDetail)}"
+									class="table table-striped">
+									<thead class="bg-primary text-white">
+										<tr>
+											<th>Producto</th>
+											<th>Precio</th>
+											<th>Cantidad</th>
+											<th>Importe</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="line: ${request.requestDetail}">
+											<td th:text="${line.productid.name}"></td>
+											<td th:text="${line.productid.unitPrice}"></td>
+											<td th:text="${line.quantity}"></td>
+											<td th:text="${line.calculateAmount()}"></td>
+										</tr>
+									</tbody>
+
+
+
+								</table>
+								<div class="form-group row">
+									<div class="col-sm-10">
+									
+										<th>Total:</th>
+										<td th:text="${request.total}"></td>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						&nbsp; &nbsp;
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12"
+								sec:authorize="isAuthenticated()">
+								<a th:href="@{'/requests/' + ${request.id} + '/edit'}"
+									class="btn btn-primary">Edit</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:include="fragments/footer"></th:block>
+
+			<script th:replace="requests/js/autocomplete-products::javascript"></script>
+		</div>
+		<!-- esto -->
+	</div>
+	<!-- esto -->
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

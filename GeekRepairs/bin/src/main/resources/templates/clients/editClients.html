@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+<div class="d-flex" id="wrapper">	<!-- esto -->
+	<th:block th:include="fragments/sidebar"></th:block>	<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">	<!-- esto -->
+	<th:block th:include="fragments/navbarTransparent"></th:block>
+
+	<div class="main">
+		<th:block th:include="fragments/navbarPrimary"></th:block>
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+						<div class="title">
+							<h2>Edit Cliente</h2>
+						</div>
+
+						<form th:object="${client}"
+							th:action="@{/clients/{id}/update(id=${client.id})}"
+							th:method="post">
+
+							<div class="alert alert-danger" th:if="${error!=null}"
+								th:text="${error}"></div>
+
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+								<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+							</div>
+
+							<div class="form-group invisible">
+								<input th:field="*{id}" id="clientId" type="text"
+									class="form-control validate"> <label for="clientId">Cliente Id</label>
+							</div>
+
+							<div class="form-group">
+								<input th:field="*{name}" id="name" type="text"
+									class="form-control validate"> <label for="name">Nombre</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+							</div>
+							
+							<div class="form-group">
+								<input th:field="*{surname}" id="name" type="text"
+									class="form-control validate"> <label for="surname">Apellido</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+							</div>
+							
+							<div class="form-group">
+								<input th:field="*{phone}" id="phone" type="text"
+									class="form-control validate"> <label for="name">Celular</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+							</div>
+							
+							<div class="form-group">
+								<input th:field="*{address}" id="address" type="text"
+									class="form-control validate"> <label for="name">Direccion</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+							</div>
+							
+							<div class="form-group">
+								<input th:field="*{email}" id="email" type="text"
+									class="form-control validate"> <label for="name">Email</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+							</div>
+
+							<button type="submit" class="btn btn-dark">Save</button>
+							<a class="btn btn-primary" th:href="@{'/clients'}">Cancel</a>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/footer"></th:block>
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

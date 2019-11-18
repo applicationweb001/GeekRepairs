@@ -4,45 +4,55 @@
 <th:block th:include="fragments/head"></th:block>
 
 <body class="index-page sidebar-collapse">
-	<th:block th:include="fragments/navbarTransparent"></th:block>
+	<div class="d-flex" id="wrapper">
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<th:block th:include="fragments/navbarTransparent"></th:block>
 
-	<div class="main">
-		<th:block th:include="fragments/navbarPrimary"></th:block>
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 offset-md-2 col-sm-12">
-						<div class="title">
-							<h2>New Category</h2>
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12">
+								<div class="title">
+									<h2>New Category</h2>
+								</div>
+
+								<form th:object="${category}" th:action="@{/categories/create}"
+									th:method="post">
+
+									<div class="alert alert-danger" th:if="${error!=null}"
+										th:text="${error}"></div>
+
+									<div class="alert alert-danger"
+										th:if="${#fields.hasErrors('*')}">
+										<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+									</div>
+
+									<div class="form-group">
+										<input th:field="*{name}" id="name" type="text"
+											class="form-control validate"> <label for="name">Nombre</label>
+										<span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+									</div>
+
+									<button type="submit" class="btn btn-dark">Save</button>
+									<a class="btn btn-primary" th:href="@{'/categories'}">Cancel</a>
+
+								</form>
+							</div>
 						</div>
-
-						<form th:object="${category}" th:action="@{/categories/create}"
-							th:method="post">
-							
-							<div class="alert alert-danger" th:if="${error!=null}"
-								th:text="${error}"></div>
-							
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-								<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-							</div>
-							
-								<div class="form-group">
-								<input th:field="*{name}" id="name" type="text"
-									class="form-control validate"> <label for="name">Nombre</label>
-								<span class="text-danger errorMsg"
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-							</div>
-
-							<button type="submit" class="btn btn-dark">Save</button>
-							<a class="btn btn-primary" th:href="@{'/categories'}">Cancel</a>
-
-						</form>
 					</div>
 				</div>
 			</div>
+
+
+
+			<th:block th:include="fragments/footer"></th:block>
 		</div>
 	</div>
-	<th:block th:include="fragments/footer"></th:block>
 	<th:block th:include="fragments/scripts"></th:block>
 </body>
 
