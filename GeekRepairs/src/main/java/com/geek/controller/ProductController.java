@@ -66,12 +66,12 @@ public class ProductController {
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/new")
 	public String newProduct(Model model) {
-
+		List<Category> categories = categoryService.getAll(); //se agrego esto
+		model.addAttribute("categories",categories); // y esto
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", new Product());
-			List<Category>categories  = categoryService.getAll(); //se agrego esto
-			model.addAttribute("categories",categories); // y esto
+			
 		}
 		return PRODUCT_ADD_FORM_VIEW;
 	}
@@ -86,8 +86,8 @@ public class ProductController {
 			// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", product);
-			List<Category>categories  = categoryService.getAll(); //se agrego esto
-			attr.addFlashAttribute("categories",categories); // y esto
+			List<Category> categories = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
 			
 
 			return "redirect:/products/new";
@@ -105,10 +105,11 @@ public class ProductController {
 		 * in case of redirection from '/article/{id}/update' model will contain article
 		 * with field values
 		 */
+		List<Category> categories = categoryService.getAll(); //se agrego esto
+		model.addAttribute("categories",categories); // y esto
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", productService.findById(productId));
-			List<Category> categories = categoryService.getAll(); //se agrego esto
-			model.addAttribute("categories",categories); // y esto
+			
 		}
 		return PRODUCT_EDIT_FORM_VIEW;
 	}
@@ -124,8 +125,8 @@ public class ProductController {
 			/// After the redirect: flash attributes pass attributes to the model
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.product", result);
 			attr.addFlashAttribute("product", productDetails);
-			List<Category>categories  = categoryService.getAll(); //se agrego esto
-			attr.addFlashAttribute("categories",categories); // y esto
+			List<Category> categories = categoryService.getAll(); //se agrego esto
+			model.addAttribute("categories",categories); // y esto
 			
 
 			return "redirect:/products/" + productDetails.getId() + "/edit";

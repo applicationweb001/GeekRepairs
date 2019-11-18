@@ -17,7 +17,7 @@
 				<div class="row">
 					<div class="col-md-8 offset-md-2 col-sm-12">
 						<div class="title">
-							<h2>Edit Product</h2>
+							<h2>Editar Producto</h2>
 						</div>
 
 						<form th:object="${product}"
@@ -45,19 +45,21 @@
 							</div>
 
 							<div class="form-group">
-								<input th:field="*{unitPrice}" id="unitPrice" type="text"
-									class="form-control validate"> <label for="unitPrice">Precio</label>
-								<span class="text-danger errorMsg"
-									th:if="${#fields.hasErrors('unitPrice')}"
-									th:errors="*{unitPrice}"></span>
-							</div>
-							<div class="form-group">
 								<label for="category">Categoria</label> <select id="category"
 									class="form-control" th:field="*{category}">
 									<option th:each="category : ${categories}" th:text="${category.name}"
 										th:value="${category.id}"></option>
 								</select>
 							</div>
+							
+							<div class="form-group">
+								<input th:field="*{unitPrice}" id="unitPrice" type="text"
+									class="form-control validate"> <label for="unitPrice">Precio</label>
+								<span class="text-danger errorMsg"
+									th:if="${#fields.hasErrors('unitPrice')}"
+									th:errors="*{unitPrice}"></span>
+							</div>
+							
 
 							<button type="submit" class="btn btn-dark">Save</button>
 							<a class="btn btn-primary" th:href="@{'/products'}">Cancel</a>
