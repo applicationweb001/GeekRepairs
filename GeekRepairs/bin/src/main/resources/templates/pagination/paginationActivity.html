@@ -1,0 +1,39 @@
+<div class="row">
+					<div class="col-md-8 offset-md-2 col-sm-12">
+			
+
+						<div th:if="${actList.totalPages != 1}" class="section">
+							<ul class="pagination pagination-primary">
+								<li class="page-item"
+									th:class="${actList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/activities/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+								<li class="page-item"
+									th:class="${actList.number == 0} ? disabled"><a
+									class="page-link"
+									th:href="@{/activities/(pageSize=${selectedPageSize}, page=${actList.number})}">â†�</a>
+								</li>
+								<li
+									th:class="${actList == (page - 1)} ? 'active page-item'"
+									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+									<a class="page-link"
+									th:href="@{/activities/(pageSize=${selectedPageSize}, page=${page})}"
+									th:text="${page}"></a>
+								</li>
+								<li class="page-item"
+									th:class="${actList.number + 1 == actList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/activities/(pageSize=${selectedPageSize}, page=${actList.number + 2})}">Ã¢â€ â€™</a>
+								</li>
+								<li class="page-item"
+									th:class="${actList.number + 1 == actList.totalPages} ? disabled">
+									<a class="page-link"
+									th:href="@{/activities/(pageSize=${selectedPageSize}, page=${actList.totalPages})}">Ã‚Â»</a>
+								</li>
+							</ul>
+						</div>
+
+
+
+					</div>
+				</div>

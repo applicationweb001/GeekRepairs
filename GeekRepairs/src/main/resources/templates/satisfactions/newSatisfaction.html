@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
+			<th:block th:include="fragments/navbarTransparent"></th:block>
+
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12">
+								<div class="title">
+									<h2>Nueva ficha de satisfaccion</h2>
+								</div>
+
+								<form th:object="${satisfaction}"
+									th:action="@{/satisfactions/{id}/create(id=${satisfaction.ticket.id})}"
+									th:method="post">
+
+									<div class="form-group row">
+										<label for="ticketId" class="col-sm-2 col-form-label">Ticket</label>
+										<div class="col-sm-6">
+											<input type="text" readonly class="form-control-plaintext"
+												id="ticketId" th:value="${satisfaction.ticket.id}">
+										</div>
+									</div>
+									
+									<div class="alert alert-danger" th:if="${error!=null}"
+										th:text="${error}"></div>
+
+									<div class="alert alert-danger"
+										th:if="${#fields.hasErrors('*')}">
+										<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+									</div>
+
+
+
+									<div class="form-group">
+										<label for="experience">Experiencia de Servicio:</label> &nbsp
+										&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<select
+											name="experience" id="experience" class="from-control"
+											required>
+											<option value="Muy Bueno">Muy Bueno</option>
+											<option value="Bueno">Bueno</option>
+											<option value="Regular">Regular</option>
+											<option value="Malo">Malo</option>
+											<option value="Muy malo">Muy malo</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('experience')}"
+											th:errors="*{experience}"></span>
+									</div>
+
+									<div class="form-group">
+										<label for="time">Tiempo de atencion de servicio:</label>
+										&nbsp &nbsp &nbsp &nbsp &nbsp <select name="time" id="time"
+											class="from-control" required>
+											<option value="Muy Bueno">Muy Bueno</option>
+											<option value="Bueno">Bueno</option>
+											<option value="Regular">Regular</option>
+											<option value="Malo">Malo</option>
+											<option value="Muy malo">Muy malo</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('time')}"
+											th:errors="*{experience}"></span>
+									</div>
+
+									<div class="form-group">
+										<label for="professionalism">Profesionalismo en el
+											servicio:</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <select
+											name="professionalism" id="professionalism"
+											class="from-control" required>
+											<option value="Muy Bueno">Muy Bueno</option>
+											<option value="Bueno">Bueno</option>
+											<option value="Regular">Regular</option>
+											<option value="Malo">Malo</option>
+											<option value="Muy malo">Muy malo</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('professionalism')}"
+											th:errors="*{professionalism}"></span>
+									</div>
+
+								
+
+								<div class="form-group">
+										<label for="quality">Calidad del servicio:</label> &nbsp &nbsp
+										&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+										&nbsp <select name="quality" id="quality" class="from-control"
+											required>
+											<option value="Muy Bueno">Muy Bueno</option>
+											<option value="Bueno">Bueno</option>
+											<option value="Regular">Regular</option>
+											<option value="Malo">Malo</option>
+											<option value="Muy malo">Muy malo</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('quality')}"
+											th:errors="*{quality}"></span>
+									</div>
+
+
+									<div class="form-group">
+										<label for="compression">Comprension de la
+											problematica:</label> &nbsp &nbsp &nbsp &nbsp <select
+											name="compression" id="compression" class="from-control"
+											required>
+											<option value="Muy Bueno">Muy Bueno</option>
+											<option value="Bueno">Bueno</option>
+											<option value="Regular">Regular</option>
+											<option value="Malo">Malo</option>
+											<option value="Muy malo">Muy malo</option>
+										</select> <span class="text-danger errorMsg"
+											th:if="${#fields.hasErrors('compression')}"
+											th:errors="*{compression}"></span>
+									</div>
+
+									<button type="submit" class="btn btn-dark">Save</button>
+									<a class="btn btn-primary" th:href="@{'/satisfactions'}">Cancel</a>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:include="fragments/footer"></th:block>
+		</div>
+		<!-- esto -->
+	</div>
+	<!-- esto -->
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

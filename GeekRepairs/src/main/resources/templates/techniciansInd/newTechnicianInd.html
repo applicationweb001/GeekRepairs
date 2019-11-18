@@ -20,7 +20,7 @@
 						<div class="row">
 							<div class="col-md-8 offset-md-2 col-sm-12">
 								<div class="title">
-									<h2>New TechnicianInd</h2>
+									<h2>Nuevo Tecnico</h2>
 								</div>
 
 								<form th:object="${technicianInd}"
@@ -70,7 +70,13 @@
 											<option value="Ocupado">Ocupado</option>
 										</select>
 									</div>
-
+									<div class="form-group">
+										<label for="type">Tipo:</label> <select name="type"
+											id="type" class="from-control" required>
+											<option value="Remoto">Remoto</option>
+											<option value="Presencial">Presencial</option>
+										</select>
+									</div>
 
 									<br>
 

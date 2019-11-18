@@ -4,6 +4,10 @@
 <th:block th:include="fragments/head"></th:block>
 
 <body class="index-page sidebar-collapse">
+	<div class="d-flex" id="wrapper">	<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>	<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">	<!-- esto -->
 	<th:block th:include="fragments/navbarTransparent"></th:block>
 
 	<div class="main">
@@ -52,14 +56,15 @@
 			<br> &nbsp;&nbsp;&nbsp; <br>
 
 			<div class="container">
-				<th:block th:include="pagination/paginationSpecialty"></th:block>
+				<th:block th:include="pagination/paginationspecialty"></th:block>
 			</div>
 
 		</div>
 	</div>
 
 	<th:block th:include="fragments/footer"></th:block>
-
+		</div> 	<!-- esto -->
+	</div>	<!-- esto -->
 	<th:block th:include="fragments/scripts"></th:block>
 </body>
 

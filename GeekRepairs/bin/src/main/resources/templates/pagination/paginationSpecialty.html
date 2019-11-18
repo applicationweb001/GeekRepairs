@@ -16,11 +16,11 @@
                 <li class="page-item"
                     th:class="${specialtiesList.number == 0} ? disabled"><a
                     class="page-link"
-                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=1)}">«</a></li>
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
                 <li class="page-item"
                     th:class="${specialtiesList.number == 0} ? disabled"><a
                     class="page-link"
-                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number})}">year</a>
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number})}">â†�</a>
                 </li>
                 <li
                     th:class="${specialtiesList.number == (page - 1)} ? 'active page-item'"
@@ -30,14 +30,14 @@
                     th:text="${page}"></a>
                 </li>
                 <li class="page-item"
-                    th:class="${specialtiesList.number + 1 == categoriesList.totalPages} ? disabled">
+                    th:class="${specialtiesList.number + 1 == specialtiesList.totalPages} ? disabled">
                     <a class="page-link"
-                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number + 2})}">→</a>
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.number + 2})}">â†’</a>
                 </li>
                 <li class="page-item"
                     th:class="${specialtiesList.number + 1 == specialtiesList.totalPages} ? disabled">
                     <a class="page-link"
-                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.totalPages})}">»</a>
+                    th:href="@{/specialties/(pageSize=${selectedPageSize}, page=${specialtiesList.totalPages})}">Â»</a>
                 </li>
             </ul>
         </div>

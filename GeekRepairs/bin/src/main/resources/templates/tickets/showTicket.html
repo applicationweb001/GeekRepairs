@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:include="fragments/head"></th:block>
+
+<body class="index-page sidebar-collapse">
+
+	<div class="d-flex" id="wrapper">
+		<!-- esto -->
+		<th:block th:include="fragments/sidebar"></th:block>
+		<!-- esto -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<!-- esto -->
+			<th:block th:include="fragments/navbarTransparent"></th:block>
+
+			<div class="main">
+				<th:block th:include="fragments/navbarPrimary"></th:block>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12">
+								<div class="title">
+									<h2 th:text="${ticket.id}"></h2>
+
+								</div>
+								<h3>Cliente:</h3>
+								<h3 th:text="${ticket.client.name}"></h3>
+							
+								<h3>Tipo de servicio:</h3>
+								<h3 th:text="${ticket.typeService}"></h3>
+								<h3>Estado:</h3>
+								<h3 th:text="${ticket.status}"></h3>
+
+								<h6
+									th:text="'created at ' + ${#dates.format(ticket.createdAt, 'dd-MMM-yyyy HH:mm')}"></h6>
+								<h6
+									th:text="'updated at ' + ${#dates.format(ticket.updatedAt, 'dd-MMM-yyyy HH:mm')}"></h6>
+
+							</div>
+						</div>
+						&nbsp; &nbsp;
+						<div class="row">
+							<div class="col-md-8 offset-md-2 col-sm-12"
+								sec:authorize="isAuthenticated()">
+								<a th:href="@{'/tickets/' + ${ticket.id} + '/edit'}"
+									class="btn btn-primary">Edit</a> <a class="btn btn-primary"
+									th:href="@{'/tickets'}">Continue</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block th:include="fragments/footer"></th:block>
+		</div>
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+
+</html>

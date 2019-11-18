@@ -46,6 +46,11 @@ public class TechnicianInd extends DateAudit {
 	@Column(name = "status")
 	private String status;
 	
+	@NotEmpty(message = "Por favor ingrese un tipo")
+	@Column(name = "type")
+	private String type;
+	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="technicianInd_specialty",joinColumns= {@JoinColumn(name="technicianInd_id")}) // aqui se agrego
 	@NotEmpty(message = "Por favor ingrese al menos una especialidad para el tecnico")
@@ -57,10 +62,11 @@ public class TechnicianInd extends DateAudit {
 	}
 
 	public TechnicianInd(@NotEmpty String name, @NotEmpty String telephone, @NotEmpty String cost,
-			@NotEmpty String status) {
+			@NotEmpty String status,@NotEmpty String type) {
 		this.name = name;
 		this.telephone = telephone;
 		this.cost = cost;
+		this.type=type;
 		this.status = status;
 
 		this.setCreatedAt(new Date());
@@ -113,6 +119,14 @@ public class TechnicianInd extends DateAudit {
 
 	public void setSpecialties(List<Specialty> specialties) {
 		this.specialties = specialties;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

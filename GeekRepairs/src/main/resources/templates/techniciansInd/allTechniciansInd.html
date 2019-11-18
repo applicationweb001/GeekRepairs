@@ -21,25 +21,29 @@
 							<div class="col-md-8 offset-md-2 col-sm-12">
 
 								<div class="title">
-									<h2>Table with Pagination</h2>
+									<h2>Lista de Tecnicos</h2>
 								</div>
 
 								<table class="table table-responsive highlight">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th></th>
-											<th></th>
-											<th></th>
+											<th>Nombre</th>
+											<th>Telefono</th>
+											<th>Estado</th>
+											<th>Tipo</th>
+											<th>Especialidad</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="technicianInd: ${techniciansIndList}">
 											<td th:text="${technicianInd.name}"></td>
+											<td th:text="${technicianInd.telephone}"></td>
+											<td th:text="${technicianInd.status}"></td>
+											<td th:text="${technicianInd.type}"></td>
 
 											<td><th:block
 													th:each="specialty : ${technicianInd.specialties}">
-													<span th:text="${specialty.name} + ' /'">Item
+													<span th:text="${specialty.name} + ' ,'">Item
 														description here...</span>
 
 
@@ -51,7 +55,7 @@
 												th:href="@{/techniciansInd/{id}(id=${technicianInd.id})}"><i
 													class="fab fa-readme"></i></a></td>
 											<td><a
-												th:href="@{/technicianInd/{id}/edit(id=${technicianInd.id})}"><i
+												th:href="@{/techniciansInd/{id}/edit(id=${technicianInd.id})}"><i
 													class="far fa-edit"></i></a></td>
 											<td><a
 												th:href="@{/technicianInd/{id}/delete(id=${technicianInd.id})}"><i
