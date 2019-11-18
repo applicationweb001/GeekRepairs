@@ -7,11 +7,11 @@
 								<li class="page-item"
 									th:class="${probList.number == 0} ? disabled"><a
 									class="page-link"
-									th:href="@{/problems/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+									th:href="@{/problems/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a></li>
 								<li class="page-item"
 									th:class="${probList.number == 0} ? disabled"><a
 									class="page-link"
-									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.number})}">â†�</a>
+									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.number})}">anterior</a>
 								</li>
 								<li
 									th:class="${probList == (page - 1)} ? 'active page-item'"
@@ -23,12 +23,12 @@
 								<li class="page-item"
 									th:class="${probList.number + 1 == probList.totalPages} ? disabled">
 									<a class="page-link"
-									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.number + 2})}">Ã¢â€ â€™</a>
+									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.number + 2})}">siguiente</a>
 								</li>
 								<li class="page-item"
 									th:class="${probList.number + 1 == probList.totalPages} ? disabled">
 									<a class="page-link"
-									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.totalPages})}">Ã‚Â»</a>
+									th:href="@{/problems/(pageSize=${selectedPageSize}, page=${probList.totalPages})}">&raquo;</a>
 								</li>
 							</ul>
 						</div>

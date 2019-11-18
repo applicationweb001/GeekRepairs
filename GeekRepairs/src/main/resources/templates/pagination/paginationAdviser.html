@@ -7,11 +7,11 @@
 								<li class="page-item"
 									th:class="${tecList.number == 0} ? disabled"><a
 									class="page-link"
-									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=1)}">Â«</a></li>
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a></li>
 								<li class="page-item"
 									th:class="${tecList.number == 0} ? disabled"><a
 									class="page-link"
-									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number})}">â†�</a>
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number})}">anterior</a>
 								</li>
 								<li
 									th:class="${tecList == (page - 1)} ? 'active page-item'"
@@ -23,12 +23,12 @@
 								<li class="page-item"
 									th:class="${tecList.number + 1 == tecList.totalPages} ? disabled">
 									<a class="page-link"
-									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number + 2})}">Ã¢â€ â€™</a>
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.number + 2})}">siguiente</a>
 								</li>
 								<li class="page-item"
 									th:class="${tecList.number + 1 == tecList.totalPages} ? disabled">
 									<a class="page-link"
-									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.totalPages})}">Ã‚Â»</a>
+									th:href="@{/advisors/(pageSize=${selectedPageSize}, page=${tecList.totalPages})}">&raquo;</a>
 								</li>
 							</ul>
 						</div>
