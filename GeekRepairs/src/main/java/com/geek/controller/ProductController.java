@@ -23,9 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.geek.common.PageInitPagination;
 import com.geek.model.Category;
-
+import com.geek.model.Client;
 import com.geek.model.Product;
-
+import com.geek.model.Ticket;
 import com.geek.service.CategoryService;
 import com.geek.service.ProductService;
 
@@ -33,7 +33,6 @@ import com.geek.service.ProductService;
 @RequestMapping("/products")
 @SessionAttributes("product")
 public class ProductController {
-
 	protected static final String PRODUCT_VIEW = "products/showProduct"; // view template for single article
 	protected static final String PRODUCT_ADD_FORM_VIEW = "products/newProduct"; // form for new article
 	protected static final String PRODUCT_EDIT_FORM_VIEW = "products/editProduct"; // form for editing an article
@@ -67,15 +66,13 @@ public class ProductController {
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/new")
 	public String newProduct(Model model) {
-
 		List<Category> categories = categoryService.getAll(); //se agrego esto
 		model.addAttribute("categories",categories); // y esto
-		
 		// in case of redirection model will contain article
 		if (!model.containsAttribute("product")) {
 			model.addAttribute("product", new Product());
-
-	
+			
+		}
 		return PRODUCT_ADD_FORM_VIEW;
 	}
 
@@ -162,10 +159,6 @@ public class ProductController {
 			
 			
 		}	
-		
-	
-	
-	
-	
+			
 	
 }
