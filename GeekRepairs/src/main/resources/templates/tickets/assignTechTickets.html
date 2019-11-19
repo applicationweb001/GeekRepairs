@@ -37,7 +37,7 @@
 							<div class="col-md-8 offset-md-2 col-sm-12">
 
 								<div class="title">
-									<h2>Table with Pagination</h2>
+									<h2>Filtrado de tecnicos</h2>
 								</div>
 
 								<table class="table table-responsive highlight" id="tabla1"
@@ -47,7 +47,7 @@
 																					<th>Check</th>
 																					<th>ID</th>
 										
-											<th>Name</th>
+											<th>Nombre</th>
 											<th></th>
 											<th></th>
 											<th></th>
@@ -68,8 +68,7 @@
 											<td>
 											<th:block
 													th:each="specialty : ${technicianInd.specialties}">
-													<span th:text="${specialty.name} + ' /'">Item
-														description here...</span>
+													<span th:text="${specialty.name} + ' /'">Descripcion... </span>
 
 
 												</th:block>
@@ -83,7 +82,7 @@
 							<div class="col-md-8 offset-md-2 col-sm-12">
 
 								<div class="title">
-									<h2>Table with Pagination</h2>
+									<h2>Tecnicos asignados</h2>
 								</div>
 
 								<table class="table table-responsive highlight" id="tabla2"
@@ -92,7 +91,7 @@
 										<tr>
 											<th>Check</th>
 
-											<th>Name</th>
+											<th>Nombre</th>
 											<th></th>
 											<th></th>
 											<th></th>

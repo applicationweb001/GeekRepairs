@@ -17,7 +17,7 @@
 				<div class="row">
 					<div class="col-md-8 offset-md-2 col-sm-12">
 						<div class="title">
-							<h2>Edit Specialty</h2>
+							<h2>Editar Especialidad</h2>
 						</div>
 
 						<form th:object="${specialty}"
@@ -33,7 +33,7 @@
 
 							<div class="form-group invisible">
 								<input th:field="*{id}" id="specialtyId" type="text"
-									class="form-control validate"> <label for="specialtyId">Specialty Id</label>
+									class="form-control validate"> <label for="specialtyId">Id de Especialidad</label>
 							</div>
 
 							<div class="form-group">
@@ -49,8 +49,8 @@
 									th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
 							</div>
 
-							<button type="submit" class="btn btn-dark">Save</button>
-							<a class="btn btn-primary" th:href="@{'/specialties'}">Cancel</a>
+							<button type="submit" class="btn btn-dark">Grabar</button>
+							<a class="btn btn-primary" th:href="@{'/specialties'}">Cancelar</a>
 
 						</form>
 					</div>

@@ -29,12 +29,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </div>
             &nbsp;
             &nbsp;
-            <div class="row">
-                <div class="col-md-8 offset-md-2 col-sm-12"  sec:authorize="isAuthenticated()">
-                    <a th:href="@{'/specialties/' + ${specialty.id} + '/edit'}"
-                       class="btn btn-primary">Edit</a>
-                </div>
-            </div>
+            <div class="col-md-8 offset-md-2 col-sm-12"
+								sec:authorize="isAuthenticated()">
+								<a th:href="@{'/specialties/' + ${specialty.id} + '/edit'}"
+									class="btn btn-primary">Editar</a> <a class="btn btn-primary"
+									th:href="@{'/specialties'}">Continuar</a>
+							</div>
         </div>
     </div>
 </div>

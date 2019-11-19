@@ -26,7 +26,7 @@
 									<th>Tiempo de Servicio:</th><h2 th:text="${satisfaction.time}"></h2>
 									<th>Profesionalismo de Servicio:</th><h2 th:text="${satisfaction.professionalism}"></h2>
 									<th>Calidad de Servicio:</th><h2 th:text="${satisfaction.quality}"></h2>
-									<th>Comprencion de problema:</th><h2 th:text="${satisfaction.compression}"></h2>
+									<th>Comprension de problema:</th><h2 th:text="${satisfaction.compression}"></h2>
 								</div>
 
 								<h6
@@ -41,8 +41,8 @@
 							<div class="col-md-8 offset-md-2 col-sm-12"
 								sec:authorize="isAuthenticated()">
 								<a th:href="@{'/satisfactions/' + ${satisfaction.id} + '/edit'}"
-									class="btn btn-primary">Edit</a> <a class="btn btn-primary"
-									th:href="@{'/satisfactions'}">Continue</a>
+									class="btn btn-primary">Editar</a> <a class="btn btn-primary"
+									th:href="@{'/satisfactions'}">Continuar</a>
 							</div>
 						</div>
 					</div>

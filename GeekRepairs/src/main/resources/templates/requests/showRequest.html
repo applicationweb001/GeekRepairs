@@ -65,13 +65,11 @@
 							</div>
 						</div>
 						&nbsp; &nbsp;
-						<div class="row">
-							<div class="col-md-8 offset-md-2 col-sm-12"
+						<div class="col-md-8 offset-md-2 col-sm-12"
 								sec:authorize="isAuthenticated()">
-								<a th:href="@{'/requests/' + ${request.id} + '/edit'}"
-									class="btn btn-primary">Edit</a>
+								 <a class="btn btn-primary"
+									th:href="@{'/requests'}">Continuar</a>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
