@@ -18,10 +18,15 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             <div class="row">
                 <div class="col-md-8 offset-md-2 col-sm-12">
                     <div class="title">
+                    <th>Nombre del Cliente:</th>
                         <h2 th:text="${client.name}"></h2>
+                        <th>Apellido del Cliente:</th>
                         <h2 th:text="${client.surname}"></h2>
+                        <th>Correo del Cliente:</th>
                     	<h2 th:text="${client.email}"></h2>
+                    	<th>Teléfono del Cliente:</th>
                     	<h2 th:text="${client.phone}"></h2>
+                    	<th>Dirección del Cliente:</th>
                     	<h2 th:text="${client.address}"></h2>
                     </div>
                     
