@@ -18,12 +18,13 @@
 				<div class="section">
 					<div class="container">
 
-						<form th:action="@{/search}" th:method="get">
+						<form th:action="@{/tickets/search/prueba}" th:method="get">
 							<div class="row">
 								<div class="col">
-									<input id="specialty" name="specialty" type="text"
+									<input id="search" name="search" type="search"
 										class="form-control"
 										placeholder="ingrese nombre de una especialidad">
+											
 								</div>
 								<div class="col">
 									<input type="submit" class="btn btn-primary" value="Buscar" />
@@ -44,6 +45,7 @@
 									<thead>
 										<tr>
 																					<th>Check</th>
+																					<th>ID</th>
 										
 											<th>Name</th>
 											<th></th>
@@ -56,9 +58,15 @@
 
 											<td class="check"><input name="" type="checkbox"></td>
 
+											<td th:text="${technicianInd.id}"></td>
+
+
 											<td th:text="${technicianInd.name}"></td>
 
-											<td><th:block
+
+
+											<td>
+											<th:block
 													th:each="specialty : ${technicianInd.specialties}">
 													<span th:text="${specialty.name} + ' /'">Item
 														description here...</span>

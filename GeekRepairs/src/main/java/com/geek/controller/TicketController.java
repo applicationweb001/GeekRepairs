@@ -84,30 +84,24 @@ public class TicketController {
 
 		return TICKET_PAGE_VIEW;
 	}
-
-	@GetMapping("{id}/search")
+	
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
+	@GetMapping("/search")
 	public String getAllTechniciansBySpecialtyName(Model model) {
 
-		model.addAttribute("technicians", technicianIndService.findBySpecialtyName("SPE1"));
-
-
 		return "tickets/assignTechTickets";
 	}
-
-	@GetMapping("/search")
-	public String getAllName(
-			Model model) {
-
 	
-				//model.addAttribute("technicians", technicianIndService.getAll());
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
+	@GetMapping("/search/prueba")
+	public String getAllName(@RequestParam(name = "search") String name,Model model) {
 
-
-				model.addAttribute("technicians", technicianIndService.findBySpecialtyName("SPE2"));
-
-
+		model.addAttribute("technicians", technicianIndService.findBySpecialtyName(name));
 
 		return "tickets/assignTechTickets";
 	}
+	
+	
 
 	@Secured({ "ROLE_ADMIN" })
 	@GetMapping("/new")

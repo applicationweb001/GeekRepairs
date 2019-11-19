@@ -112,9 +112,13 @@ try {
 				}
 			}
 			request.setTicketid(ticket);
+			
 			requestService.create(request);
+			
 			status.setComplete();
+			
 			model.addAttribute("success","Solicitud Generada");
+			
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
